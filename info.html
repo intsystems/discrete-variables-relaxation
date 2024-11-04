@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; Relaxit  documentation</title>
+  <title>Motivation &mdash; Relaxit  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -49,13 +49,22 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Get Started:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Main Info:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#algorithms-to-implement-from-simplest-to-hardest">Algorithms to implement (from simplest to hardest)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#recommended-stack">Recommended stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#problem-details">Problem details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#contributors">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#useful-links">Useful links</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Get Started:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Packages:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="train.html">Train</a></li>
+<li class="toctree-l1"><a class="reference internal" href="train.html">Distributions</a></li>
 </ul>
 
         </div>
@@ -72,7 +81,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="breadcrumb-item active">Motivation</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/Intelligent-Systems-Phystech/discrete-variables-relaxation/blob/main./doc/source/info.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -82,42 +91,65 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <dl class="simple">
-<dt>&lt;!– &lt;div align=”center”&gt;</dt><dd><p>&lt;img src=”assets/logo.svg” width=”200px” /&gt;
+  <p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>rst
+.. raw:: html</p>
+<blockquote>
+<div><dl class="simple">
+<dt>&lt;div align=”center”&gt;</dt><dd><p>&lt;img src=”assets/logo.svg” width=”200px” /&gt;
 &lt;h1&gt; Just Relax It &lt;/h1&gt;
 Discrete variables relaxation</p>
 </dd>
 </dl>
-<p>&lt;/div&gt; –&gt;</p>
-<p>## 💡 Motivation
-For lots of mathematical problems we need an ability to sample discrete random variables.
-The problem is that due to continuos nature of deep learning optimization, the usage of truely discrete random variables is infeasible.
-Thus we use different relaxation method.
-One of them, [Concrete distribution](<a class="reference external" href="https://arxiv.org/abs/1611.00712">https://arxiv.org/abs/1611.00712</a>) or [Gumbel-softmax](<a class="reference external" href="https://arxiv.org/abs/1611.01144">https://arxiv.org/abs/1611.01144</a>) (this is one distribution proposed in parallel by two research groups) is implemented in different DL packages.
+<p>&lt;/div&gt;</p>
+</div></blockquote>
+<section id="motivation">
+<h1>Motivation<a class="headerlink" href="#motivation" title="Permalink to this heading"></a></h1>
+<p>For lots of mathematical problems we need an ability to sample discrete random variables.
+The problem is that due to continuous nature of deep learning optimization, the usage of truly discrete random variables is infeasible.
+Thus we use different relaxation methods.
+One of them, <a class="reference external" href="https://arxiv.org/abs/1611.00712">Concrete distribution</a> or <a class="reference external" href="https://arxiv.org/abs/1611.01144">Gumbel-softmax</a> (this is one distribution proposed in parallel by two research groups) is implemented in different DL packages.
 In this project we implement different alternatives to it.</p>
-<p>## 🗃 Algorithms to implement (from simplest to hardest)
-- [x] [Relaxed Bernoulli](<a class="reference external" href="http://proceedings.mlr.press/v119/yamada20a/yamada20a.pdf">http://proceedings.mlr.press/v119/yamada20a/yamada20a.pdf</a>)
-- [ ] [Correlated relaxed Bernoulli](<a class="reference external" href="https://openreview.net/pdf?id=oDFvtxzPOx">https://openreview.net/pdf?id=oDFvtxzPOx</a>)
-- [ ] [Gumbel-softmax TOP-K](<a class="reference external" href="https://arxiv.org/pdf/1903.06059">https://arxiv.org/pdf/1903.06059</a>)
-- [x] [Straight-Through Bernoulli, distribution (don’t mix with Relaxed distribution from pyro)](<a class="reference external" href="https://citeseerx.ist.psu.edu/document?repid=rep1&amp;type=pdf&amp;doi=62c76ca0b2790c34e85ba1cce09d47be317c7235">https://citeseerx.ist.psu.edu/document?repid=rep1&amp;type=pdf&amp;doi=62c76ca0b2790c34e85ba1cce09d47be317c7235</a>)
-- [ ] [Invertible Gaussian reparametrization](<a class="reference external" href="https://arxiv.org/abs/1912.09588">https://arxiv.org/abs/1912.09588</a>) with KL implemented
-- [x] [Hard concrete](<a class="reference external" href="https://arxiv.org/pdf/1712.01312">https://arxiv.org/pdf/1712.01312</a>)
-- [ ] [REINFORCE](<a class="reference external" href="http://www.cs.toronto.edu/~tingwuwang/REINFORCE.pdf">http://www.cs.toronto.edu/~tingwuwang/REINFORCE.pdf</a>)  (not a distribution actually, think how to integrate it with other distributions)
-- [ ] [Logit-normal distribution](<a class="reference external" href="https://en.wikipedia.org/wiki/Logit-normal_distribution">https://en.wikipedia.org/wiki/Logit-normal_distribution</a>) with KL implemented and [Laplace-form approximation of Dirichlet](<a class="reference external" href="https://stats.stackexchange.com/questions/535560/approximating-the-logit-normal-by-dirichlet">https://stats.stackexchange.com/questions/535560/approximating-the-logit-normal-by-dirichlet</a>)</p>
-<p>## 📚 Recommended stack
-Some of the alternatives for GS were implemented in [pyro](<a class="reference external" href="https://docs.pyro.ai/en/dev/distributions.html">https://docs.pyro.ai/en/dev/distributions.html</a>), so it might be useful to play with them also.</p>
-<p>## 🧩 Problem details
-To make to library constistent, we integrate imports of distributions from pyro and pytorch into the library, so that all the categorical distributions can be imported from one entrypoint.</p>
-<p>## 👥 Contributors
-- [Daniil Dorin](<a class="reference external" href="https://github.com/DorinDaniil">https://github.com/DorinDaniil</a>) (Basic code writing, Final demo, Algorithms)
-- [Igor Ignashin](<a class="reference external" href="https://github.com/ThunderstormXX">https://github.com/ThunderstormXX</a>) (Project wrapping, Documentation writing, Algorithms)
-- [Nikita Kiselev](<a class="reference external" href="https://github.com/kisnikser">https://github.com/kisnikser</a>) (Project planning, Blog post, Algorithms)
-- [Andrey Veprikov](<a class="reference external" href="https://github.com/Vepricov">https://github.com/Vepricov</a>) (Tests writing, Documentation writing, Algorithms)</p>
-<p>## 🔗 Useful links
-- [About top-k GS](<a class="reference external" href="https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/DL2/sampling/subsets.html">https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/DL2/sampling/subsets.html</a>)
-- [VAE implementation with different latent distributions](<a class="reference external" href="https://github.com/kampta/pytorch-distributions">https://github.com/kampta/pytorch-distributions</a>)
-- [KL divergence between Dirichlet and Logistic-Normal implemented in R](<a class="reference external" href="https://rdrr.io/cran/Compositional/src/R/kl.diri.normal.R">https://rdrr.io/cran/Compositional/src/R/kl.diri.normal.R</a>)
-- [About score function (SF) and pathwise derivate (PD) estimators, VAE and REINFORCE](<a class="reference external" href="https://arxiv.org/abs/1506.05254">https://arxiv.org/abs/1506.05254</a>)</p>
+</section>
+<section id="algorithms-to-implement-from-simplest-to-hardest">
+<h1>Algorithms to implement (from simplest to hardest)<a class="headerlink" href="#algorithms-to-implement-from-simplest-to-hardest" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p>[x] <a class="reference external" href="http://proceedings.mlr.press/v119/yamada20a/yamada20a.pdf">Relaxed Bernoulli</a></p></li>
+<li><p>[ ] <a class="reference external" href="https://openreview.net/pdf?id=oDFvtxzPOx">Correlated relaxed Bernoulli</a></p></li>
+<li><p>[ ] <a class="reference external" href="https://arxiv.org/pdf/1903.06059">Gumbel-softmax TOP-K</a></p></li>
+<li><p>[x] <a class="reference external" href="https://citeseerx.ist.psu.edu/document?repid=rep1&amp;type=pdf&amp;doi=62c76ca0b2790c34e85ba1cce09d47be317c7235">Straight-Through Bernoulli, distribution (don’t mix with Relaxed distribution from pyro)</a></p></li>
+<li><p>[ ] <a class="reference external" href="https://arxiv.org/abs/1912.09588">Invertible Gaussian reparametrization</a> with KL implemented</p></li>
+<li><p>[x] <a class="reference external" href="https://arxiv.org/pdf/1712.01312">Hard concrete</a></p></li>
+<li><p>[ ] <a class="reference external" href="http://www.cs.toronto.edu/~tingwuwang/REINFORCE.pdf">REINFORCE</a> (not a distribution actually, think how to integrate it with other distributions)</p></li>
+<li><p>[ ] <a class="reference external" href="https://en.wikipedia.org/wiki/Logit-normal_distribution">Logit-normal distribution</a> with KL implemented and <a class="reference external" href="https://stats.stackexchange.com/questions/535560/approximating-the-logit-normal-by-dirichlet">Laplace-form approximation of Dirichlet</a></p></li>
+</ul>
+</section>
+<section id="recommended-stack">
+<h1>Recommended stack<a class="headerlink" href="#recommended-stack" title="Permalink to this heading"></a></h1>
+<p>Some of the alternatives for GS were implemented in <a class="reference external" href="https://docs.pyro.ai/en/dev/distributions.html">pyro</a>, so it might be useful to play with them also.</p>
+</section>
+<section id="problem-details">
+<h1>Problem details<a class="headerlink" href="#problem-details" title="Permalink to this heading"></a></h1>
+<p>To make the library consistent, we integrate imports of distributions from pyro and pytorch into the library, so that all the categorical distributions can be imported from one entrypoint.</p>
+</section>
+<section id="contributors">
+<h1>Contributors<a class="headerlink" href="#contributors" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/DorinDaniil">Daniil Dorin</a> (Basic code writing, Final demo, Algorithms)</p></li>
+<li><p><a class="reference external" href="https://github.com/ThunderstormXX">Igor Ignashin</a> (Project wrapping, Documentation writing, Algorithms)</p></li>
+<li><p><a class="reference external" href="https://github.com/kisnikser">Nikita Kiselev</a> (Project planning, Blog post, Algorithms)</p></li>
+<li><p><a class="reference external" href="https://github.com/Vepricov">Andrey Veprikov</a> (Tests writing, Documentation writing, Algorithms)</p></li>
+</ul>
+</section>
+<section id="useful-links">
+<h1>Useful links<a class="headerlink" href="#useful-links" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/DL2/sampling/subsets.html">About top-k GS</a></p></li>
+<li><p><a class="reference external" href="https://github.com/kampta/pytorch-distributions">VAE implementation with different latent distributions</a></p></li>
+<li><p><a class="reference external" href="https://rdrr.io/cran/Compositional/src/R/kl.diri.normal.R">KL divergence between Dirichlet and Logistic-Normal implemented in R</a></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/1506.05254">About score function (SF) and pathwise derivate (PD) estimators, VAE and REINFORCE</a></p></li>
+</ul>
+<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+</section>
 
 
            </div>

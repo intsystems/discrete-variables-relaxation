@@ -1,5 +1,5 @@
 *****
-Train
+Distributions
 *****
 
 .. automodule:: relaxit.distributions
