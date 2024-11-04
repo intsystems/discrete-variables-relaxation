@@ -2,7 +2,7 @@
 Distributions
 *****
 
-.. automodule:: relaxit.distributions
+.. automodule:: relaxit.distributions.GaussianRelaxedBernoulli.GaussianRelaxedBernoulli
     :members:
 
 
