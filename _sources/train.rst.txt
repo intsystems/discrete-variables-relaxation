@@ -2,7 +2,7 @@
 Train
 *****
 
-.. automodule:: relaxit.distributions.GaussianRelaxedBernoulli
+.. automodule:: relaxit.distributions
     :members:
 
 
