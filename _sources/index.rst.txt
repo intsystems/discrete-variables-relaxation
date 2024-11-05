@@ -7,12 +7,13 @@ Just Relax It
 Discrete variables relaxation
 =======================
 
-.. image:: https://raw.githubusercontent.com/intsystems/discrete-variables-relaxation/main/assets/logo.svg
-   :width: 200px
-   :align: center
+.. container::
 
-   Just Relax It
-   Discrete variables relaxation
+   ::
+
+      <img src="../../assets/logo.svg" width="200px" />
+      <h1> Just Relax It </h1>
+      Discrete variables relaxation
 
 .. toctree::
    :maxdepth: 1
