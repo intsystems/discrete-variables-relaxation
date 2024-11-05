@@ -3,7 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Mixture Lib!
+.. image:: https://raw.githubusercontent.com/intsystems/discrete-variables-relaxation/main/assets/logo.svg
+   :width: 200px
+   :align: center
+
+   Just Relax It
+   Discrete variables relaxation
 =======================
 
 .. toctree::
