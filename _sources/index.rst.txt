@@ -1,19 +1,15 @@
-.. MixtureLib documentation master file, created by
-   sphinx-quickstart on Fri Mar 20 22:58:28 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+
 
 Just Relax It
-Discrete variables relaxation
 =======================
 
-.. container::
 
-   ::
+.. image:: ../../assets/logo.svg
+   :width: 200px
+   :align: center
 
-      <img src="../../assets/logo.svg" width="200px" />
-      <h1> Just Relax It </h1>
-      Discrete variables relaxation
+   Just Relax It
+   Discrete variables relaxation
 
 .. toctree::
    :maxdepth: 1
