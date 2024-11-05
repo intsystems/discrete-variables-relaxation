@@ -50,7 +50,8 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Main Info:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="info.html">Algorithms to implement (from simplest to hardest)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#algorithms-to-implement-from-simplest-to-hardest">Algorithms to implement (from simplest to hardest)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#recommended-stack">Recommended stack</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#problem-details">Problem details</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html#contributors">Contributors</a></li>
@@ -62,7 +63,53 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Packages:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Distributions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Distributions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#relaxit.distributions.GaussianRelaxedBernoulli"><code class="docutils literal notranslate"><span class="pre">GaussianRelaxedBernoulli</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.GaussianRelaxedBernoulli.arg_constraints"><code class="docutils literal notranslate"><span class="pre">GaussianRelaxedBernoulli.arg_constraints</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.GaussianRelaxedBernoulli.batch_shape"><code class="docutils literal notranslate"><span class="pre">GaussianRelaxedBernoulli.batch_shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.GaussianRelaxedBernoulli.event_shape"><code class="docutils literal notranslate"><span class="pre">GaussianRelaxedBernoulli.event_shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.GaussianRelaxedBernoulli.has_rsample"><code class="docutils literal notranslate"><span class="pre">GaussianRelaxedBernoulli.has_rsample</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.GaussianRelaxedBernoulli.log_prob"><code class="docutils literal notranslate"><span class="pre">GaussianRelaxedBernoulli.log_prob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.GaussianRelaxedBernoulli.rsample"><code class="docutils literal notranslate"><span class="pre">GaussianRelaxedBernoulli.rsample()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.GaussianRelaxedBernoulli.sample"><code class="docutils literal notranslate"><span class="pre">GaussianRelaxedBernoulli.sample()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.GaussianRelaxedBernoulli.support"><code class="docutils literal notranslate"><span class="pre">GaussianRelaxedBernoulli.support</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#relaxit.distributions.HardConcrete"><code class="docutils literal notranslate"><span class="pre">HardConcrete</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.HardConcrete.arg_constraints"><code class="docutils literal notranslate"><span class="pre">HardConcrete.arg_constraints</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.HardConcrete.batch_shape"><code class="docutils literal notranslate"><span class="pre">HardConcrete.batch_shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.HardConcrete.event_shape"><code class="docutils literal notranslate"><span class="pre">HardConcrete.event_shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.HardConcrete.has_rsample"><code class="docutils literal notranslate"><span class="pre">HardConcrete.has_rsample</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.HardConcrete.log_prob"><code class="docutils literal notranslate"><span class="pre">HardConcrete.log_prob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.HardConcrete.rsample"><code class="docutils literal notranslate"><span class="pre">HardConcrete.rsample()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.HardConcrete.sample"><code class="docutils literal notranslate"><span class="pre">HardConcrete.sample()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.HardConcrete.support"><code class="docutils literal notranslate"><span class="pre">HardConcrete.support</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#relaxit.distributions.StraightThroughBernoulli"><code class="docutils literal notranslate"><span class="pre">StraightThroughBernoulli</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.StraightThroughBernoulli.arg_constraints"><code class="docutils literal notranslate"><span class="pre">StraightThroughBernoulli.arg_constraints</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.StraightThroughBernoulli.batch_shape"><code class="docutils literal notranslate"><span class="pre">StraightThroughBernoulli.batch_shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.StraightThroughBernoulli.event_shape"><code class="docutils literal notranslate"><span class="pre">StraightThroughBernoulli.event_shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.StraightThroughBernoulli.has_rsample"><code class="docutils literal notranslate"><span class="pre">StraightThroughBernoulli.has_rsample</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.StraightThroughBernoulli.log_prob"><code class="docutils literal notranslate"><span class="pre">StraightThroughBernoulli.log_prob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.StraightThroughBernoulli.rsample"><code class="docutils literal notranslate"><span class="pre">StraightThroughBernoulli.rsample()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.StraightThroughBernoulli.sample"><code class="docutils literal notranslate"><span class="pre">StraightThroughBernoulli.sample()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.StraightThroughBernoulli.support"><code class="docutils literal notranslate"><span class="pre">StraightThroughBernoulli.support</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">GaussianRelaxedBernoulli</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">GaussianRelaxedBernoulli.arg_constraints</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">GaussianRelaxedBernoulli.batch_shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">GaussianRelaxedBernoulli.event_shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">GaussianRelaxedBernoulli.has_rsample</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">GaussianRelaxedBernoulli.log_prob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">GaussianRelaxedBernoulli.rsample()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7"><code class="docutils literal notranslate"><span class="pre">GaussianRelaxedBernoulli.sample()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8"><code class="docutils literal notranslate"><span class="pre">GaussianRelaxedBernoulli.support</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -91,21 +138,337 @@
              
   <section id="distributions">
 <h1>Distributions<a class="headerlink" href="#distributions" title="Permalink to this heading"></a></h1>
-<span class="target" id="module-relaxit.distributions.GaussianRelaxedBernoulli.GaussianRelaxedBernoulli"></span><p>Gaussian-based continuous Relaxed Bernoulli distribution class inheriting from Pyro’s TorchDistribution.</p>
+<span class="target" id="module-relaxit.distributions"></span><dl class="py class">
+<dt class="sig sig-object py" id="relaxit.distributions.GaussianRelaxedBernoulli">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">relaxit.distributions.</span></span><span class="sig-name descname"><span class="pre">GaussianRelaxedBernoulli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/relaxit/distributions/GaussianRelaxedBernoulli.html#GaussianRelaxedBernoulli"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.GaussianRelaxedBernoulli" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TorchDistribution</span></code></p>
+<p>Gaussian-based continuous Relaxed Bernoulli distribution class inheriting from Pyro’s TorchDistribution.</p>
 <dl class="field-list simple">
-<dt class="field-odd">param loc<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Mean of the normal distribution.</p>
-</dd>
-<dt class="field-even">type loc<span class="colon">:</span></dt>
-<dd class="field-even"><p>torch.Tensor</p>
-</dd>
-<dt class="field-odd">param scale<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Standard deviation of the normal distribution.</p>
-</dd>
-<dt class="field-even">type scale<span class="colon">:</span></dt>
-<dd class="field-even"><p>torch.Tensor</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>loc</strong> (<em>torch.Tensor</em>) – Mean of the normal distribution.</p></li>
+<li><p><strong>scale</strong> (<em>torch.Tensor</em>) – Standard deviation of the normal distribution.</p></li>
+</ul>
 </dd>
 </dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="relaxit.distributions.GaussianRelaxedBernoulli.arg_constraints">
+<span class="sig-name descname"><span class="pre">arg_constraints</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'loc':</span> <span class="pre">Real(),</span> <span class="pre">'scale':</span> <span class="pre">GreaterThan(lower_bound=0.0)}</span></em><a class="headerlink" href="#relaxit.distributions.GaussianRelaxedBernoulli.arg_constraints" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="relaxit.distributions.GaussianRelaxedBernoulli.batch_shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">batch_shape</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Size</span></em><a class="headerlink" href="#relaxit.distributions.GaussianRelaxedBernoulli.batch_shape" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the batch shape of the distribution.</p>
+<p>The batch shape represents the shape of independent distributions.
+For example, if <cite>loc</cite> is vector of length 3,
+the batch shape will be <cite>[3]</cite>, indicating 3 independent Bernoulli distributions.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="relaxit.distributions.GaussianRelaxedBernoulli.event_shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">event_shape</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Size</span></em><a class="headerlink" href="#relaxit.distributions.GaussianRelaxedBernoulli.event_shape" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the event shape of the distribution.</p>
+<p>The event shape represents the shape of each individual event.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="relaxit.distributions.GaussianRelaxedBernoulli.has_rsample">
+<span class="sig-name descname"><span class="pre">has_rsample</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#relaxit.distributions.GaussianRelaxedBernoulli.has_rsample" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="relaxit.distributions.GaussianRelaxedBernoulli.log_prob">
+<span class="sig-name descname"><span class="pre">log_prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="_modules/relaxit/distributions/GaussianRelaxedBernoulli.html#GaussianRelaxedBernoulli.log_prob"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.GaussianRelaxedBernoulli.log_prob" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the log probability of the given value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>torch.Tensor</em>) – The value for which to compute the log probability.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The log probability of the given value.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="relaxit.distributions.GaussianRelaxedBernoulli.rsample">
+<span class="sig-name descname"><span class="pre">rsample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Size</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">torch.Size([])</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="_modules/relaxit/distributions/GaussianRelaxedBernoulli.html#GaussianRelaxedBernoulli.rsample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.GaussianRelaxedBernoulli.rsample" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a sample from the distribution using the reparameterization trick.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sample_shape</strong> (<em>torch.Size</em>) – The shape of the sample.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A sample from the distribution.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="relaxit.distributions.GaussianRelaxedBernoulli.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Size</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">torch.Size([])</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="_modules/relaxit/distributions/GaussianRelaxedBernoulli.html#GaussianRelaxedBernoulli.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.GaussianRelaxedBernoulli.sample" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a sample from the distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sample_shape</strong> (<em>torch.Size</em>) – The shape of the sample.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A sample from the distribution.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="relaxit.distributions.GaussianRelaxedBernoulli.support">
+<span class="sig-name descname"><span class="pre">support</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Real()</span></em><a class="headerlink" href="#relaxit.distributions.GaussianRelaxedBernoulli.support" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="relaxit.distributions.HardConcrete">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">relaxit.distributions.</span></span><span class="sig-name descname"><span class="pre">HardConcrete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/relaxit/distributions/HardConcrete.html#HardConcrete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.HardConcrete" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TorchDistribution</span></code></p>
+<p>Parameters:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="relaxit.distributions.HardConcrete.arg_constraints">
+<span class="sig-name descname"><span class="pre">arg_constraints</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'alpha':</span> <span class="pre">GreaterThan(lower_bound=0.0),</span> <span class="pre">'beta':</span> <span class="pre">GreaterThan(lower_bound=0.0),</span> <span class="pre">'gamma':</span> <span class="pre">LessThan(upper_bound=0.0),</span> <span class="pre">'xi':</span> <span class="pre">GreaterThan(lower_bound=1.0)}</span></em><a class="headerlink" href="#relaxit.distributions.HardConcrete.arg_constraints" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="relaxit.distributions.HardConcrete.batch_shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">batch_shape</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Size</span></em><a class="headerlink" href="#relaxit.distributions.HardConcrete.batch_shape" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the batch shape of the distribution.</p>
+<p>The batch shape represents the shape of independent distributions.
+For example, if <cite>loc</cite> is vector of length 3,
+the batch shape will be <cite>[3]</cite>, indicating 3 independent Bernoulli distributions.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="relaxit.distributions.HardConcrete.event_shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">event_shape</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Size</span></em><a class="headerlink" href="#relaxit.distributions.HardConcrete.event_shape" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the event shape of the distribution.</p>
+<p>The event shape represents the shape of each individual event.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="relaxit.distributions.HardConcrete.has_rsample">
+<span class="sig-name descname"><span class="pre">has_rsample</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#relaxit.distributions.HardConcrete.has_rsample" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="relaxit.distributions.HardConcrete.log_prob">
+<span class="sig-name descname"><span class="pre">log_prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="_modules/relaxit/distributions/HardConcrete.html#HardConcrete.log_prob"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.HardConcrete.log_prob" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the log probability of the given value.</p>
+<p>Args:
+- value (Tensor): The value for which to compute the log probability.</p>
+<p>Returns:
+- torch.Tensor: The log probability of the given value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="relaxit.distributions.HardConcrete.rsample">
+<span class="sig-name descname"><span class="pre">rsample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Size</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">torch.Size([])</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="_modules/relaxit/distributions/HardConcrete.html#HardConcrete.rsample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.HardConcrete.rsample" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a sample from the distribution using the reparameterization trick.</p>
+<p>Args:
+- sample_shape (torch.Size): The shape of the sample.</p>
+<p>Returns:
+- torch.Tensor: A sample from the distribution.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="relaxit.distributions.HardConcrete.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Size</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">torch.Size([])</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="_modules/relaxit/distributions/HardConcrete.html#HardConcrete.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.HardConcrete.sample" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a sample from the distribution.</p>
+<p>Args:
+- sample_shape (torch.Size): The shape of the sample.</p>
+<p>Returns:
+- torch.Tensor: A sample from the distribution.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="relaxit.distributions.HardConcrete.support">
+<span class="sig-name descname"><span class="pre">support</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Real()</span></em><a class="headerlink" href="#relaxit.distributions.HardConcrete.support" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="relaxit.distributions.StraightThroughBernoulli">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">relaxit.distributions.</span></span><span class="sig-name descname"><span class="pre">StraightThroughBernoulli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/relaxit/distributions/StraightThroughBernoulli.html#StraightThroughBernoulli"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.StraightThroughBernoulli" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TorchDistribution</span></code></p>
+<p>Parameters:
+- a (Tensor): logits</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="relaxit.distributions.StraightThroughBernoulli.arg_constraints">
+<span class="sig-name descname"><span class="pre">arg_constraints</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'a':</span> <span class="pre">Real()}</span></em><a class="headerlink" href="#relaxit.distributions.StraightThroughBernoulli.arg_constraints" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="relaxit.distributions.StraightThroughBernoulli.batch_shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">batch_shape</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Size</span></em><a class="headerlink" href="#relaxit.distributions.StraightThroughBernoulli.batch_shape" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the batch shape of the distribution.</p>
+<p>The batch shape represents the shape of independent distributions.
+For example, if <cite>loc</cite> is vector of length 3,
+the batch shape will be <cite>[3]</cite>, indicating 3 independent Bernoulli distributions.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="relaxit.distributions.StraightThroughBernoulli.event_shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">event_shape</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Size</span></em><a class="headerlink" href="#relaxit.distributions.StraightThroughBernoulli.event_shape" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the event shape of the distribution.</p>
+<p>The event shape represents the shape of each individual event.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="relaxit.distributions.StraightThroughBernoulli.has_rsample">
+<span class="sig-name descname"><span class="pre">has_rsample</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#relaxit.distributions.StraightThroughBernoulli.has_rsample" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="relaxit.distributions.StraightThroughBernoulli.log_prob">
+<span class="sig-name descname"><span class="pre">log_prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="_modules/relaxit/distributions/StraightThroughBernoulli.html#StraightThroughBernoulli.log_prob"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.StraightThroughBernoulli.log_prob" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the log probability of the given value.</p>
+<p>Args:
+- value (Tensor): The value for which to compute the log probability.</p>
+<p>Returns:
+- torch.Tensor: The log probability of the given value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="relaxit.distributions.StraightThroughBernoulli.rsample">
+<span class="sig-name descname"><span class="pre">rsample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Size</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">torch.Size([])</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="_modules/relaxit/distributions/StraightThroughBernoulli.html#StraightThroughBernoulli.rsample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.StraightThroughBernoulli.rsample" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a sample from the distribution using the reparameterization trick.</p>
+<p>Args:
+- sample_shape (torch.Size): The shape of the sample.</p>
+<p>Returns:
+- torch.Tensor: A sample from the distribution.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="relaxit.distributions.StraightThroughBernoulli.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Size</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">torch.Size([])</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="_modules/relaxit/distributions/StraightThroughBernoulli.html#StraightThroughBernoulli.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.StraightThroughBernoulli.sample" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a sample from the distribution.</p>
+<p>Args:
+- sample_shape (torch.Size): The shape of the sample.</p>
+<p>Returns:
+- torch.Tensor: A sample from the distribution.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="relaxit.distributions.StraightThroughBernoulli.support">
+<span class="sig-name descname"><span class="pre">support</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Real()</span></em><a class="headerlink" href="#relaxit.distributions.StraightThroughBernoulli.support" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="id0">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">relaxit.distributions.</span></span><span class="sig-name descname"><span class="pre">GaussianRelaxedBernoulli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/relaxit/distributions/GaussianRelaxedBernoulli.html#GaussianRelaxedBernoulli"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TorchDistribution</span></code></p>
+<p>Gaussian-based continuous Relaxed Bernoulli distribution class inheriting from Pyro’s TorchDistribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>loc</strong> (<em>torch.Tensor</em>) – Mean of the normal distribution.</p></li>
+<li><p><strong>scale</strong> (<em>torch.Tensor</em>) – Standard deviation of the normal distribution.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">arg_constraints</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'loc':</span> <span class="pre">Real(),</span> <span class="pre">'scale':</span> <span class="pre">GreaterThan(lower_bound=0.0)}</span></em><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id2">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">batch_shape</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Size</span></em><a class="headerlink" href="#id2" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the batch shape of the distribution.</p>
+<p>The batch shape represents the shape of independent distributions.
+For example, if <cite>loc</cite> is vector of length 3,
+the batch shape will be <cite>[3]</cite>, indicating 3 independent Bernoulli distributions.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id3">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">event_shape</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Size</span></em><a class="headerlink" href="#id3" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the event shape of the distribution.</p>
+<p>The event shape represents the shape of each individual event.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">has_rsample</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#id4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">log_prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="_modules/relaxit/distributions/GaussianRelaxedBernoulli.html#GaussianRelaxedBernoulli.log_prob"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id5" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the log probability of the given value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>torch.Tensor</em>) – The value for which to compute the log probability.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The log probability of the given value.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">rsample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Size</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">torch.Size([])</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="_modules/relaxit/distributions/GaussianRelaxedBernoulli.html#GaussianRelaxedBernoulli.rsample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id6" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a sample from the distribution using the reparameterization trick.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sample_shape</strong> (<em>torch.Size</em>) – The shape of the sample.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A sample from the distribution.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Size</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">torch.Size([])</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="_modules/relaxit/distributions/GaussianRelaxedBernoulli.html#GaussianRelaxedBernoulli.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id7" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a sample from the distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sample_shape</strong> (<em>torch.Size</em>) – The shape of the sample.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A sample from the distribution.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">support</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Real()</span></em><a class="headerlink" href="#id8" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 
