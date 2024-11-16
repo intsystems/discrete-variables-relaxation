@@ -98,6 +98,25 @@
 <li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.HardConcrete.support"><code class="docutils literal notranslate"><span class="pre">HardConcrete.support</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#relaxit.distributions.InvertibleGaussian"><code class="docutils literal notranslate"><span class="pre">InvertibleGaussian</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.InvertibleGaussian.arg_constraints"><code class="docutils literal notranslate"><span class="pre">InvertibleGaussian.arg_constraints</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.InvertibleGaussian.batch_shape"><code class="docutils literal notranslate"><span class="pre">InvertibleGaussian.batch_shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.InvertibleGaussian.event_shape"><code class="docutils literal notranslate"><span class="pre">InvertibleGaussian.event_shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.InvertibleGaussian.has_rsample"><code class="docutils literal notranslate"><span class="pre">InvertibleGaussian.has_rsample</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.InvertibleGaussian.rsample"><code class="docutils literal notranslate"><span class="pre">InvertibleGaussian.rsample()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.InvertibleGaussian.softmax_plus_plus"><code class="docutils literal notranslate"><span class="pre">InvertibleGaussian.softmax_plus_plus()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.InvertibleGaussian.support"><code class="docutils literal notranslate"><span class="pre">InvertibleGaussian.support</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#relaxit.distributions.LogisticNormalSoftmax"><code class="docutils literal notranslate"><span class="pre">LogisticNormalSoftmax</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.LogisticNormalSoftmax.arg_constraints"><code class="docutils literal notranslate"><span class="pre">LogisticNormalSoftmax.arg_constraints</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.LogisticNormalSoftmax.expand"><code class="docutils literal notranslate"><span class="pre">LogisticNormalSoftmax.expand()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.LogisticNormalSoftmax.has_rsample"><code class="docutils literal notranslate"><span class="pre">LogisticNormalSoftmax.has_rsample</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.LogisticNormalSoftmax.loc"><code class="docutils literal notranslate"><span class="pre">LogisticNormalSoftmax.loc</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.LogisticNormalSoftmax.scale"><code class="docutils literal notranslate"><span class="pre">LogisticNormalSoftmax.scale</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.LogisticNormalSoftmax.support"><code class="docutils literal notranslate"><span class="pre">LogisticNormalSoftmax.support</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#relaxit.distributions.StraightThroughBernoulli"><code class="docutils literal notranslate"><span class="pre">StraightThroughBernoulli</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.StraightThroughBernoulli.arg_constraints"><code class="docutils literal notranslate"><span class="pre">StraightThroughBernoulli.arg_constraints</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.StraightThroughBernoulli.batch_shape"><code class="docutils literal notranslate"><span class="pre">StraightThroughBernoulli.batch_shape</span></code></a></li>
@@ -400,6 +419,133 @@ the batch shape will be <cite>[3]</cite>, indicating 3 independent Bernoulli dis
 <dl class="py attribute">
 <dt class="sig sig-object py" id="relaxit.distributions.HardConcrete.support">
 <span class="sig-name descname"><span class="pre">support</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Real()</span></em><a class="headerlink" href="#relaxit.distributions.HardConcrete.support" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="relaxit.distributions.InvertibleGaussian">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">relaxit.distributions.</span></span><span class="sig-name descname"><span class="pre">InvertibleGaussian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/relaxit/distributions/InvertibleGaussian.html#InvertibleGaussian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.InvertibleGaussian" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TorchDistribution</span></code></p>
+<p>Invertible Gaussian distribution class inheriting from Pyro’s TorchDistribution.</p>
+<p>Parameters:
+- loc (Tensor): The mean (mu) of the normal distribution.
+- scale (Tensor): The standard deviation (sigma) of the normal distribution.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="relaxit.distributions.InvertibleGaussian.arg_constraints">
+<span class="sig-name descname"><span class="pre">arg_constraints</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'loc':</span> <span class="pre">Real(),</span> <span class="pre">'scale':</span> <span class="pre">GreaterThan(lower_bound=0.0)}</span></em><a class="headerlink" href="#relaxit.distributions.InvertibleGaussian.arg_constraints" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="relaxit.distributions.InvertibleGaussian.batch_shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">batch_shape</span></span><a class="headerlink" href="#relaxit.distributions.InvertibleGaussian.batch_shape" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the batch shape of the distribution.</p>
+<p>The batch shape represents the shape of independent distributions.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="relaxit.distributions.InvertibleGaussian.event_shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">event_shape</span></span><a class="headerlink" href="#relaxit.distributions.InvertibleGaussian.event_shape" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the event shape of the distribution.</p>
+<p>The event shape represents the shape of each individual event.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="relaxit.distributions.InvertibleGaussian.has_rsample">
+<span class="sig-name descname"><span class="pre">has_rsample</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#relaxit.distributions.InvertibleGaussian.has_rsample" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="relaxit.distributions.InvertibleGaussian.rsample">
+<span class="sig-name descname"><span class="pre">rsample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">torch.Size([])</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/relaxit/distributions/InvertibleGaussian.html#InvertibleGaussian.rsample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.InvertibleGaussian.rsample" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a sample from the distribution using the reparameterization trick.</p>
+<p>Args:
+- sample_shape (torch.Size): The shape of the generated samples.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="relaxit.distributions.InvertibleGaussian.softmax_plus_plus">
+<span class="sig-name descname"><span class="pre">softmax_plus_plus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/relaxit/distributions/InvertibleGaussian.html#InvertibleGaussian.softmax_plus_plus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.InvertibleGaussian.softmax_plus_plus" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the softmax++ function.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>y (torch.Tensor): Input tensor of shape (batch_size, num_classes).
+tau (float): Temperature parameter.
+delta (float): Additional term delta &gt; 0.</p>
+</dd>
+<dt>Returns:</dt><dd><p>torch.Tensor: Output tensor of the same shape as y.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="relaxit.distributions.InvertibleGaussian.support">
+<span class="sig-name descname"><span class="pre">support</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Real()</span></em><a class="headerlink" href="#relaxit.distributions.InvertibleGaussian.support" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="relaxit.distributions.LogisticNormalSoftmax">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">relaxit.distributions.</span></span><span class="sig-name descname"><span class="pre">LogisticNormalSoftmax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/relaxit/distributions/LogisticNormalSoftmax.html#LogisticNormalSoftmax"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.LogisticNormalSoftmax" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TransformedDistribution</span></code></p>
+<p>Creates a logistic-normal distribution parameterized by <a class="reference internal" href="#relaxit.distributions.LogisticNormalSoftmax.loc" title="relaxit.distributions.LogisticNormalSoftmax.loc"><code class="xref py py-attr docutils literal notranslate"><span class="pre">loc</span></code></a> and <a class="reference internal" href="#relaxit.distributions.LogisticNormalSoftmax.scale" title="relaxit.distributions.LogisticNormalSoftmax.scale"><code class="xref py py-attr docutils literal notranslate"><span class="pre">scale</span></code></a>
+that define the base <cite>Normal</cite> distribution transformed with the
+<cite>SoftmaxTransform</cite> such that:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">~</span> <span class="n">LogisticNormal</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">Logistic</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">~</span> <span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Args:</dt><dd><p>loc (float or Tensor): mean of the base distribution
+scale (float or Tensor): standard deviation of the base distribution</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="relaxit.distributions.LogisticNormalSoftmax.arg_constraints">
+<span class="sig-name descname"><span class="pre">arg_constraints</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Constraint</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'loc':</span> <span class="pre">Real(),</span> <span class="pre">'scale':</span> <span class="pre">GreaterThan(lower_bound=0.0)}</span></em><a class="headerlink" href="#relaxit.distributions.LogisticNormalSoftmax.arg_constraints" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="relaxit.distributions.LogisticNormalSoftmax.expand">
+<span class="sig-name descname"><span class="pre">expand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_instance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/relaxit/distributions/LogisticNormalSoftmax.html#LogisticNormalSoftmax.expand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.LogisticNormalSoftmax.expand" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new distribution instance (or populates an existing instance
+provided by a derived class) with batch dimensions expanded to
+<cite>batch_shape</cite>. This method calls <code class="xref py py-class docutils literal notranslate"><span class="pre">expand</span></code> on
+the distribution’s parameters. As such, this does not allocate new
+memory for the expanded distribution instance. Additionally,
+this does not repeat any args checking or parameter broadcasting in
+<cite>__init__.py</cite>, when an instance is first created.</p>
+<dl>
+<dt>Args:</dt><dd><p>batch_shape (torch.Size): the desired expanded size.
+_instance: new instance provided by subclasses that</p>
+<blockquote>
+<div><p>need to override <cite>.expand</cite>.</p>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>New distribution instance with batch dimensions expanded to
+<cite>batch_size</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="relaxit.distributions.LogisticNormalSoftmax.has_rsample">
+<span class="sig-name descname"><span class="pre">has_rsample</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#relaxit.distributions.LogisticNormalSoftmax.has_rsample" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="relaxit.distributions.LogisticNormalSoftmax.loc">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">loc</span></span><a class="headerlink" href="#relaxit.distributions.LogisticNormalSoftmax.loc" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="relaxit.distributions.LogisticNormalSoftmax.scale">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scale</span></span><a class="headerlink" href="#relaxit.distributions.LogisticNormalSoftmax.scale" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="relaxit.distributions.LogisticNormalSoftmax.support">
+<span class="sig-name descname"><span class="pre">support</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Simplex()</span></em><a class="headerlink" href="#relaxit.distributions.LogisticNormalSoftmax.support" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
