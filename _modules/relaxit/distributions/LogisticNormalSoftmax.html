@@ -122,7 +122,7 @@
         <span class="p">)</span>
 
 <div class="viewcode-block" id="LogisticNormalSoftmax.expand"><a class="viewcode-back" href="../../../train.html#relaxit.distributions.LogisticNormalSoftmax.expand">[docs]</a>    <span class="k">def</span> <span class="nf">expand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_shape</span><span class="p">,</span> <span class="n">_instance</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="n">new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_checked_instance</span><span class="p">(</span><span class="n">LogisticNormal</span><span class="p">,</span> <span class="n">_instance</span><span class="p">)</span>
+        <span class="n">new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_checked_instance</span><span class="p">(</span><span class="n">LogisticNormalSoftmax</span><span class="p">,</span> <span class="n">_instance</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">batch_shape</span><span class="p">,</span> <span class="n">_instance</span><span class="o">=</span><span class="n">new</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
