@@ -104,11 +104,8 @@
 <span class="sd">    :type a: torch.Tensor</span>
 <span class="sd">    :param K: how many samples without replacement to pick.</span>
 <span class="sd">    :type K: int</span>
-<span class="sd">    :param support: support of the discrete distribution. If None, it will be `torch.arange(a.numel()).reshape(a.shape)`. It must be the same `len` as `a`.</span>
-<span class="sd">    Parameters:</span>
-<span class="sd">    - a (Tensor): logits, if not from Simples, we project a into it</span>
-<span class="sd">    - K (int): how many samples without replacement to pick</span>
-<span class="sd">    - support (Tensor): support of the discrete distribution. If None, it will be `torch.range(len(a))`. It must be the same `len` as `a`.</span>
+<span class="sd">    :param support: support of the discrete distribution. If None, it will be `torch.arange(a.numel()).reshape(a.shape)`. It must be the same `shape` as `a`.</span>
+<span class="sd">    :type support: torch.Tensor</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">arg_constraints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="n">constraints</span><span class="o">.</span><span class="n">real</span><span class="p">}</span>

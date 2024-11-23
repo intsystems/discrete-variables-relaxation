@@ -375,14 +375,10 @@ the batch shape will be <cite>[3]</cite>, indicating 3 independent Bernoulli dis
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>a</strong> (<em>torch.Tensor</em>) – logits, if not from Simples, we project a into it.</p></li>
 <li><p><strong>K</strong> (<em>int</em>) – how many samples without replacement to pick.</p></li>
-<li><p><strong>support</strong> – support of the discrete distribution. If None, it will be <cite>torch.arange(a.numel()).reshape(a.shape)</cite>. It must be the same <cite>len</cite> as <cite>a</cite>.</p></li>
+<li><p><strong>support</strong> (<em>torch.Tensor</em>) – support of the discrete distribution. If None, it will be <cite>torch.arange(a.numel()).reshape(a.shape)</cite>. It must be the same <cite>shape</cite> as <cite>a</cite>.</p></li>
 </ul>
 </dd>
 </dl>
-<p>Parameters:
-- a (Tensor): logits, if not from Simples, we project a into it
-- K (int): how many samples without replacement to pick
-- support (Tensor): support of the discrete distribution. If None, it will be <cite>torch.range(len(a))</cite>. It must be the same <cite>len</cite> as <cite>a</cite>.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="relaxit.distributions.GumbelSoftmaxTopK.arg_constraints">
 <span class="sig-name descname"><span class="pre">arg_constraints</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'a':</span> <span class="pre">Real()}</span></em><a class="headerlink" href="#relaxit.distributions.GumbelSoftmaxTopK.arg_constraints" title="Permalink to this definition"></a></dt>
