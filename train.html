@@ -87,6 +87,16 @@
 <li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.GaussianRelaxedBernoulli.support"><code class="docutils literal notranslate"><span class="pre">GaussianRelaxedBernoulli.support</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#relaxit.distributions.GumbelSoftmaxTopK"><code class="docutils literal notranslate"><span class="pre">GumbelSoftmaxTopK</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.GumbelSoftmaxTopK.arg_constraints"><code class="docutils literal notranslate"><span class="pre">GumbelSoftmaxTopK.arg_constraints</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.GumbelSoftmaxTopK.batch_shape"><code class="docutils literal notranslate"><span class="pre">GumbelSoftmaxTopK.batch_shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.GumbelSoftmaxTopK.event_shape"><code class="docutils literal notranslate"><span class="pre">GumbelSoftmaxTopK.event_shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.GumbelSoftmaxTopK.has_rsample"><code class="docutils literal notranslate"><span class="pre">GumbelSoftmaxTopK.has_rsample</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.GumbelSoftmaxTopK.log_prob"><code class="docutils literal notranslate"><span class="pre">GumbelSoftmaxTopK.log_prob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.GumbelSoftmaxTopK.rsample"><code class="docutils literal notranslate"><span class="pre">GumbelSoftmaxTopK.rsample()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.GumbelSoftmaxTopK.sample"><code class="docutils literal notranslate"><span class="pre">GumbelSoftmaxTopK.sample()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#relaxit.distributions.HardConcrete"><code class="docutils literal notranslate"><span class="pre">HardConcrete</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.HardConcrete.arg_constraints"><code class="docutils literal notranslate"><span class="pre">HardConcrete.arg_constraints</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.HardConcrete.batch_shape"><code class="docutils literal notranslate"><span class="pre">HardConcrete.batch_shape</span></code></a></li>
@@ -352,6 +362,74 @@ the batch shape will be <cite>[3]</cite>, indicating 3 independent Bernoulli dis
 <dt class="sig sig-object py" id="relaxit.distributions.GaussianRelaxedBernoulli.support">
 <span class="sig-name descname"><span class="pre">support</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Real()</span></em><a class="headerlink" href="#relaxit.distributions.GaussianRelaxedBernoulli.support" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="relaxit.distributions.GumbelSoftmaxTopK">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">relaxit.distributions.</span></span><span class="sig-name descname"><span class="pre">GumbelSoftmaxTopK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">support</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/relaxit/distributions/GumbelSoftmaxTopK.html#GumbelSoftmaxTopK"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.GumbelSoftmaxTopK" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TorchDistribution</span></code></p>
+<p>Implimentation of the Gaussian-soft max topK trick from <a class="reference external" href="https://arxiv.org/pdf/1903.06059">https://arxiv.org/pdf/1903.06059</a></p>
+<p>Parameters:
+- a (Tensor): logits, if not from Simples, we project a into it
+- K (int): how many samples without replacement to pick
+- support (Tensor): support of the discrete distribution. If None, it will be <cite>torch.range(len(a))</cite>. It must be the same <cite>len</cite> as <cite>a</cite>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="relaxit.distributions.GumbelSoftmaxTopK.arg_constraints">
+<span class="sig-name descname"><span class="pre">arg_constraints</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'a':</span> <span class="pre">Real()}</span></em><a class="headerlink" href="#relaxit.distributions.GumbelSoftmaxTopK.arg_constraints" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="relaxit.distributions.GumbelSoftmaxTopK.batch_shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">batch_shape</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Size</span></em><a class="headerlink" href="#relaxit.distributions.GumbelSoftmaxTopK.batch_shape" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the batch shape of the distribution.</p>
+<p>The batch shape represents the shape of independent distributions.
+For example, if <cite>loc</cite> is vector of length 3,
+the batch shape will be <cite>[3]</cite>, indicating 3 independent distributions.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="relaxit.distributions.GumbelSoftmaxTopK.event_shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">event_shape</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Size</span></em><a class="headerlink" href="#relaxit.distributions.GumbelSoftmaxTopK.event_shape" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the event shape of the distribution.</p>
+<p>The event shape represents the shape of each individual event.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="relaxit.distributions.GumbelSoftmaxTopK.has_rsample">
+<span class="sig-name descname"><span class="pre">has_rsample</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#relaxit.distributions.GumbelSoftmaxTopK.has_rsample" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="relaxit.distributions.GumbelSoftmaxTopK.log_prob">
+<span class="sig-name descname"><span class="pre">log_prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Size</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">torch.Size([1])</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="_modules/relaxit/distributions/GumbelSoftmaxTopK.html#GumbelSoftmaxTopK.log_prob"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.GumbelSoftmaxTopK.log_prob" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the log probability of the given value.</p>
+<p>Args:
+- value (Tensor): The value for which to compute the log probability.
+- shape(torch.Size): The shape of the output</p>
+<p>Returns:
+- torch.Tensor: The log probability of the given value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="relaxit.distributions.GumbelSoftmaxTopK.rsample">
+<span class="sig-name descname"><span class="pre">rsample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Size</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="_modules/relaxit/distributions/GumbelSoftmaxTopK.html#GumbelSoftmaxTopK.rsample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.GumbelSoftmaxTopK.rsample" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a sample from the distribution using the Gaussian-soft max topK trick.</p>
+<p>Args:
+- sample_shape (torch.Size): The shape of the sample.</p>
+<p>Returns:
+- torch.Tensor: A sample from the distribution.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="relaxit.distributions.GumbelSoftmaxTopK.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Size</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="_modules/relaxit/distributions/GumbelSoftmaxTopK.html#GumbelSoftmaxTopK.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.GumbelSoftmaxTopK.sample" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a sample from the distribution.</p>
+<p>Args:
+- sample_shape (torch.Size): The shape of the sample.</p>
+<p>Returns:
+- torch.Tensor: A sample from the distribution.</p>
+</dd></dl>
 
 </dd></dl>
 
