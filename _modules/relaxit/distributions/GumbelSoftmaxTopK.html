@@ -91,46 +91,51 @@
              
   <h1>Source code for relaxit.distributions.GumbelSoftmaxTopK</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
 <span class="kn">from</span> <span class="nn">torch.distributions</span> <span class="kn">import</span> <span class="n">constraints</span>
 <span class="kn">from</span> <span class="nn">pyro.distributions.torch_distribution</span> <span class="kn">import</span> <span class="n">TorchDistribution</span>
-<span class="kn">from</span> <span class="nn">pyro.distributions</span> <span class="kn">import</span> <span class="n">Gumbel</span>
 <span class="kn">from</span> <span class="nn">torch.distributions</span> <span class="kn">import</span> <span class="n">constraints</span>
 
 <div class="viewcode-block" id="GumbelSoftmaxTopK"><a class="viewcode-back" href="../../../train.html#relaxit.distributions.GumbelSoftmaxTopK">[docs]</a><span class="k">class</span> <span class="nc">GumbelSoftmaxTopK</span><span class="p">(</span><span class="n">TorchDistribution</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Implimentation of the Gaussian-soft max topK trick from https://arxiv.org/pdf/1903.06059</span>
 
-<span class="sd">    :param a: logits, if not from Simples, we project a into it.</span>
+<span class="sd">    :param a: logits.</span>
 <span class="sd">    :type a: torch.Tensor</span>
 <span class="sd">    :param K: how many samples without replacement to pick.</span>
-<span class="sd">    :type K: int</span>
-<span class="sd">    :param support: support of the discrete distribution. If None, it will be `torch.arange(a.numel()).reshape(a.shape)`. It must be the same `shape` as `a`.</span>
-<span class="sd">    :type support: torch.Tensor</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    :type K: torch.Tensor</span>
+<span class="sd">    :param tau: Temperature hyper-parameter.</span>
+<span class="sd">    :type tau: torch.Tensor</span>
+<span class="sd">    :param hard: if `True`, the returned samples will be discretized as one-hot vectors, but will be differentiated as if it is the soft sample in autograd</span>
+<span class="sd">    :type hard: bool</span>
+<span class="sd">    :param validate_args: Whether to validate arguments.</span>
+<span class="sd">    :type validate_args: bool</span>
+<span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="n">arg_constraints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="n">constraints</span><span class="o">.</span><span class="n">real</span><span class="p">}</span>
+    <span class="n">arg_constraints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span>  <span class="p">:</span> <span class="n">constraints</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> 
+                       <span class="s1">&#39;K&#39;</span>  <span class="p">:</span> <span class="n">constraints</span><span class="o">.</span><span class="n">positive_integer</span><span class="p">,</span>
+                       <span class="s1">&#39;tau&#39;</span><span class="p">:</span> <span class="n">constraints</span><span class="o">.</span><span class="n">positive</span><span class="p">}</span>
     <span class="n">has_rsample</span> <span class="o">=</span> <span class="kc">True</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">K</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> 
-                 <span class="n">support</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">validate_args</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Initializes the GumbelSoftmaxTopK distribution.</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">K</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> 
+                 <span class="n">tau</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">hard</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">validate_args</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&#39;&#39;&#39; Initializes the GumbelSoftmaxTopK distribution.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">        - a (Tensor): logits, if not from Simples, we project a into it</span>
-<span class="sd">        - K (int): how many samples without replacement to pick</span>
-<span class="sd">        - support (Tensor): support of the discrete distribution. If None, it will be `torch.range(len(a))`. It must be the same `len` as `a`.</span>
-<span class="sd">        - validate_args (bool): Whether to validate arguments.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">float</span><span class="p">()</span> <span class="o">/</span> <span class="n">a</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>  <span class="c1"># Ensure loc is a float tensor from simplex</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gumbel</span> <span class="o">=</span> <span class="n">Gumbel</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="n">validate_args</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">support</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">supp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">numel</span><span class="p">())</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">support</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;support and a must have the same shape&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">supp</span> <span class="o">=</span> <span class="n">support</span>  
-        <span class="bp">self</span><span class="o">.</span><span class="n">K</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>  <span class="c1"># Ensure K is a int number   </span>
+<span class="sd">        :param a: logits.</span>
+<span class="sd">        :type a: torch.Tensor</span>
+<span class="sd">        :param K: how many samples without replacement to pick.</span>
+<span class="sd">        :type K: torch.Tensor</span>
+<span class="sd">        :param tau: Temperature hyper-parameter.</span>
+<span class="sd">        :type tau: torch.Tensor</span>
+<span class="sd">        :param hard: if `True`, the returned samples will be discretized as one-hot vectors, but will be differentiated as if it is the soft sample in autograd</span>
+<span class="sd">        :type hard: bool</span>
+<span class="sd">        :param validate_args: Whether to validate arguments.</span>
+<span class="sd">        :type validate_args: bool</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>  <span class="c1"># Ensure loc is a float tensor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">K</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">int</span><span class="p">()</span>  <span class="c1"># Ensure K is a int tensor   </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tau</span> <span class="o">=</span> <span class="n">tau</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hard</span> <span class="o">=</span> <span class="n">hard</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">validate_args</span><span class="o">=</span><span class="n">validate_args</span><span class="p">)</span>
 
     <span class="nd">@property</span>
@@ -153,53 +158,45 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">()</span>
 
-<div class="viewcode-block" id="GumbelSoftmaxTopK.rsample"><a class="viewcode-back" href="../../../train.html#relaxit.distributions.GumbelSoftmaxTopK.rsample">[docs]</a>    <span class="k">def</span> <span class="nf">rsample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_shape</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<div class="viewcode-block" id="GumbelSoftmaxTopK.rsample"><a class="viewcode-back" href="../../../train.html#relaxit.distributions.GumbelSoftmaxTopK.rsample">[docs]</a>    <span class="k">def</span> <span class="nf">rsample</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generates a sample from the distribution using the Gaussian-soft max topK trick.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">        - sample_shape (torch.Size): The shape of the sample.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">        - torch.Tensor: A sample from the distribution.</span>
+<span class="sd">        :return: A sample from the distribution.</span>
+<span class="sd">        :rtype: torch.Tensor</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">sample_shape</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">sample_shape</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">])</span>
 
-        <span class="n">G</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gumbel</span><span class="o">.</span><span class="n">rsample</span><span class="p">(</span><span class="n">sample_shape</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-        <span class="n">_</span><span class="p">,</span> <span class="n">idxs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">G</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">),</span> <span class="n">k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">supp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="n">idxs</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">sample_shape</span><span class="p">)</span></div>
+        <span class="n">top_k_logits</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">):</span>
+            <span class="n">top1_gumbel</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">gumbel_softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tau</span><span class="p">,</span> <span class="n">hard</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hard</span><span class="p">)</span>
+            <span class="n">top_k_logits</span> <span class="o">+=</span> <span class="n">top1_gumbel</span>
+            <span class="n">logits</span> <span class="o">-=</span> <span class="n">top1_gumbel</span> <span class="o">*</span> <span class="mf">1e10</span>  <span class="c1"># mask the selected entry</span>
 
-<div class="viewcode-block" id="GumbelSoftmaxTopK.sample"><a class="viewcode-back" href="../../../train.html#relaxit.distributions.GumbelSoftmaxTopK.sample">[docs]</a>    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_shape</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">top_k_logits</span></div>
+
+<div class="viewcode-block" id="GumbelSoftmaxTopK.sample"><a class="viewcode-back" href="../../../train.html#relaxit.distributions.GumbelSoftmaxTopK.sample">[docs]</a>    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Generates a sample from the distribution.</span>
+<span class="sd">        Generates a sample from the distribution with no grad.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">        - sample_shape (torch.Size): The shape of the sample.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">        - torch.Tensor: A sample from the distribution.</span>
+<span class="sd">        :return: A sample from the distribution.</span>
+<span class="sd">        :rtype: torch.Tensor</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rsample</span><span class="p">(</span><span class="n">sample_shape</span><span class="p">)</span></div>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rsample</span><span class="p">()</span></div>
         
-<div class="viewcode-block" id="GumbelSoftmaxTopK.log_prob"><a class="viewcode-back" href="../../../train.html#relaxit.distributions.GumbelSoftmaxTopK.log_prob">[docs]</a>    <span class="k">def</span> <span class="nf">log_prob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">shape</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">1</span><span class="p">]))</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<div class="viewcode-block" id="GumbelSoftmaxTopK.log_prob"><a class="viewcode-back" href="../../../train.html#relaxit.distributions.GumbelSoftmaxTopK.log_prob">[docs]</a>    <span class="k">def</span> <span class="nf">log_prob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the log probability of the given value.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">        - value (Tensor): The value for which to compute the log probability.</span>
-<span class="sd">        - shape(torch.Size): The shape of the output</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">        - torch.Tensor: The log probability of the given value.</span>
+<span class="sd">        :param value: The value for which to compute the log probability.</span>
+<span class="sd">        :type value: torch.Tensor</span>
+<span class="sd">        :return: The log probability of the given value.</span>
+<span class="sd">        :rtype: torch.Tensor</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_args</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_validate_sample</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 
-        <span class="n">idx</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">supp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
-
-        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="n">idx</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">*</span> <span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span></div>
 
     <span class="k">def</span> <span class="nf">_validate_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -209,8 +206,10 @@
 <span class="sd">        - value (Tensor): The sample value to validate.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_args</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">supp</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Sample value must be in the support&quot;</span><span class="p">)</span></div>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hard</span> <span class="ow">and</span> <span class="p">((</span><span class="n">value</span> <span class="o">!=</span> <span class="mf">1.</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">value</span> <span class="o">!=</span> <span class="mf">0.</span><span class="p">))</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+                <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;If `self.hard` is `True`, then all coordinates in `value` must be 0 or 1 and you have </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">hard</span> <span class="ow">and</span> <span class="p">(</span><span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+                <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;If `self.hard` is `False`, then all coordinates in `value` must be &gt;= 0 and you have </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
