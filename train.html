@@ -113,6 +113,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.InvertibleGaussian.batch_shape"><code class="docutils literal notranslate"><span class="pre">InvertibleGaussian.batch_shape</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.InvertibleGaussian.event_shape"><code class="docutils literal notranslate"><span class="pre">InvertibleGaussian.event_shape</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.InvertibleGaussian.has_rsample"><code class="docutils literal notranslate"><span class="pre">InvertibleGaussian.has_rsample</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.InvertibleGaussian.log_prob"><code class="docutils literal notranslate"><span class="pre">InvertibleGaussian.log_prob()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.InvertibleGaussian.rsample"><code class="docutils literal notranslate"><span class="pre">InvertibleGaussian.rsample()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.InvertibleGaussian.softmax_plus_plus"><code class="docutils literal notranslate"><span class="pre">InvertibleGaussian.softmax_plus_plus()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#relaxit.distributions.InvertibleGaussian.support"><code class="docutils literal notranslate"><span class="pre">InvertibleGaussian.support</span></code></a></li>
@@ -546,6 +547,14 @@ the batch shape will be <cite>[3]</cite>, indicating 3 independent Bernoulli dis
 <dt class="sig sig-object py" id="relaxit.distributions.InvertibleGaussian.has_rsample">
 <span class="sig-name descname"><span class="pre">has_rsample</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#relaxit.distributions.InvertibleGaussian.has_rsample" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="relaxit.distributions.InvertibleGaussian.log_prob">
+<span class="sig-name descname"><span class="pre">log_prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/relaxit/distributions/InvertibleGaussian.html#InvertibleGaussian.log_prob"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#relaxit.distributions.InvertibleGaussian.log_prob" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the log likelihood of a value.</p>
+<p>Args:
+- value (Tensor): The value for which to compute the log probability.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="relaxit.distributions.InvertibleGaussian.rsample">

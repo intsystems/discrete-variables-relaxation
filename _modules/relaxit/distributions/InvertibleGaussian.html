@@ -185,16 +185,38 @@
         <span class="n">residual</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">g</span><span class="p">,</span> <span class="n">residual</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span></div>
 
-    <span class="c1"># def log_prob(self, value):</span>
-    <span class="c1">#     &quot;&quot;&quot;</span>
-    <span class="c1">#     Computes the log likelihood of a value.</span>
+<div class="viewcode-block" id="InvertibleGaussian.log_prob"><a class="viewcode-back" href="../../../train.html#relaxit.distributions.InvertibleGaussian.log_prob">[docs]</a>    <span class="k">def</span> <span class="nf">log_prob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the log likelihood of a value.</span>
 
-    <span class="c1">#     Args:</span>
-    <span class="c1">#     - value (Tensor): The value for which to compute the log probability.</span>
-    <span class="c1">#     &quot;&quot;&quot;</span>
-    <span class="c1">#     var = self.scale ** 2</span>
-    <span class="c1">#     log_scale = torch.log(self.scale)</span>
-    <span class="c1">#     log_prob_norm = -((value - self.loc) ** 2) / (2 * var) - log_scale - 0.5 * torch.log(torch.tensor(2.0 * torch.pi, device=value.device))</span>
+<span class="sd">        Args:</span>
+<span class="sd">        - value (Tensor): The value for which to compute the log probability.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_args</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_validate_sample</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+        <span class="c1"># Separate the value into g and residual</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">residual</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">:]</span>
+
+        <span class="c1"># Invert the softmax++ transformation</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span> <span class="o">*</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">residual</span><span class="p">))</span>
+
+        <span class="c1"># Compute the log probability of the normal distribution</span>
+        <span class="n">log_prob_normal</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">loc</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> <span class="o">+</span>
+            <span class="mi">2</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Compute the Jacobian determinant of the softmax++ transformation</span>
+        <span class="n">K</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># Number of classes including the residual</span>
+        <span class="n">log_det_jacobian</span> <span class="o">=</span> <span class="o">-</span> <span class="p">(</span><span class="n">K</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">temperature</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">g</span><span class="p">),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">residual</span><span class="p">)</span>
+
+        <span class="c1"># Adjust the log probability by the Jacobian determinant</span>
+        <span class="n">log_prob</span> <span class="o">=</span> <span class="n">log_prob_normal</span> <span class="o">-</span> <span class="n">log_det_jacobian</span>
+
+        <span class="k">return</span> <span class="n">log_prob</span></div>
         
 
     <span class="k">def</span> <span class="nf">_validate_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
