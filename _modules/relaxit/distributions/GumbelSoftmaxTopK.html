@@ -96,8 +96,9 @@
 <span class="kn">from</span> <span class="nn">pyro.distributions.torch_distribution</span> <span class="kn">import</span> <span class="n">TorchDistribution</span>
 <span class="kn">from</span> <span class="nn">torch.distributions</span> <span class="kn">import</span> <span class="n">constraints</span>
 
+
 <div class="viewcode-block" id="GumbelSoftmaxTopK"><a class="viewcode-back" href="../../../train.html#relaxit.distributions.GumbelSoftmaxTopK">[docs]</a><span class="k">class</span> <span class="nc">GumbelSoftmaxTopK</span><span class="p">(</span><span class="n">TorchDistribution</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Implimentation of the Gaussian-soft max topK trick from https://arxiv.org/pdf/1903.06059</span>
 
 <span class="sd">    :param a: logits.</span>
@@ -110,16 +111,24 @@
 <span class="sd">    :type hard: bool</span>
 <span class="sd">    :param validate_args: Whether to validate arguments.</span>
 <span class="sd">    :type validate_args: bool</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">arg_constraints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span>  <span class="p">:</span> <span class="n">constraints</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> 
-                       <span class="s1">&#39;K&#39;</span>  <span class="p">:</span> <span class="n">constraints</span><span class="o">.</span><span class="n">positive_integer</span><span class="p">,</span>
-                       <span class="s1">&#39;tau&#39;</span><span class="p">:</span> <span class="n">constraints</span><span class="o">.</span><span class="n">positive</span><span class="p">}</span>
+    <span class="n">arg_constraints</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="n">constraints</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>
+        <span class="s2">&quot;K&quot;</span><span class="p">:</span> <span class="n">constraints</span><span class="o">.</span><span class="n">positive_integer</span><span class="p">,</span>
+        <span class="s2">&quot;tau&quot;</span><span class="p">:</span> <span class="n">constraints</span><span class="o">.</span><span class="n">positive</span><span class="p">,</span>
+    <span class="p">}</span>
     <span class="n">has_rsample</span> <span class="o">=</span> <span class="kc">True</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">K</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> 
-                 <span class="n">tau</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">hard</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">validate_args</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&#39;&#39;&#39; Initializes the GumbelSoftmaxTopK distribution.</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">a</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">K</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">tau</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">hard</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">validate_args</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Initializes the GumbelSoftmaxTopK distribution.</span>
 
 <span class="sd">        :param a: logits.</span>
 <span class="sd">        :type a: torch.Tensor</span>
@@ -131,9 +140,9 @@
 <span class="sd">        :type hard: bool</span>
 <span class="sd">        :param validate_args: Whether to validate arguments.</span>
 <span class="sd">        :type validate_args: bool</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>  <span class="c1"># Ensure loc is a float tensor</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">K</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">int</span><span class="p">()</span>  <span class="c1"># Ensure K is a int tensor   </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">K</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">int</span><span class="p">()</span>  <span class="c1"># Ensure K is a int tensor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tau</span> <span class="o">=</span> <span class="n">tau</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hard</span> <span class="o">=</span> <span class="n">hard</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">validate_args</span><span class="o">=</span><span class="n">validate_args</span><span class="p">)</span>
@@ -184,7 +193,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rsample</span><span class="p">()</span></div>
-        
+
 <div class="viewcode-block" id="GumbelSoftmaxTopK.log_prob"><a class="viewcode-back" href="../../../train.html#relaxit.distributions.GumbelSoftmaxTopK.log_prob">[docs]</a>    <span class="k">def</span> <span class="nf">log_prob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the log probability of the given value.</span>
@@ -206,10 +215,14 @@
 <span class="sd">        - value (Tensor): The sample value to validate.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_args</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hard</span> <span class="ow">and</span> <span class="p">((</span><span class="n">value</span> <span class="o">!=</span> <span class="mf">1.</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">value</span> <span class="o">!=</span> <span class="mf">0.</span><span class="p">))</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
-                <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;If `self.hard` is `True`, then all coordinates in `value` must be 0 or 1 and you have </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hard</span> <span class="ow">and</span> <span class="p">((</span><span class="n">value</span> <span class="o">!=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">value</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">))</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+                <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;If `self.hard` is `True`, then all coordinates in `value` must be 0 or 1 and you have </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">hard</span> <span class="ow">and</span> <span class="p">(</span><span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
-                <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;If `self.hard` is `False`, then all coordinates in `value` must be &gt;= 0 and you have </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+                <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;If `self.hard` is `False`, then all coordinates in `value` must be &gt;= 0 and you have </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span></div>
 </pre></div>
 
            </div>
