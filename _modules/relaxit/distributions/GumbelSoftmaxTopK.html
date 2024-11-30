@@ -46,24 +46,13 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Main Info:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../info.html"># 📬 Assets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../info.html#motivation"># 💡 Motivation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../info.html#algorithms"># 🗃 Algorithms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../info.html#demo"># 🎮 Demo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../info.html#stack"># 📚 Stack</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../info.html#some-details"># 🧩 Some details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../info.html#contributors"># 👥 Contributors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../info.html#useful-links"># 🔗 Useful links</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Get Started:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Guidelines</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Packages:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Code</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../train.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../distributions.html">Distributions</a></li>
 </ul>
 
         </div>
@@ -98,7 +87,7 @@
 <span class="kn">from</span> <span class="nn">torch.distributions</span> <span class="kn">import</span> <span class="n">constraints</span>
 
 
-<div class="viewcode-block" id="GumbelSoftmaxTopK"><a class="viewcode-back" href="../../../train.html#relaxit.distributions.GumbelSoftmaxTopK">[docs]</a><span class="k">class</span> <span class="nc">GumbelSoftmaxTopK</span><span class="p">(</span><span class="n">TorchDistribution</span><span class="p">):</span>
+<div class="viewcode-block" id="GumbelSoftmaxTopK"><a class="viewcode-back" href="../../../distributions.html#relaxit.distributions.GumbelSoftmaxTopK">[docs]</a><span class="k">class</span> <span class="nc">GumbelSoftmaxTopK</span><span class="p">(</span><span class="n">TorchDistribution</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Implimentation of the Gaussian-soft max topK trick from https://arxiv.org/pdf/1903.06059</span>
 
@@ -168,7 +157,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">()</span>
 
-<div class="viewcode-block" id="GumbelSoftmaxTopK.rsample"><a class="viewcode-back" href="../../../train.html#relaxit.distributions.GumbelSoftmaxTopK.rsample">[docs]</a>    <span class="k">def</span> <span class="nf">rsample</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<div class="viewcode-block" id="GumbelSoftmaxTopK.rsample"><a class="viewcode-back" href="../../../distributions.html#relaxit.distributions.GumbelSoftmaxTopK.rsample">[docs]</a>    <span class="k">def</span> <span class="nf">rsample</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generates a sample from the distribution using the Gaussian-soft max topK trick.</span>
 
@@ -185,7 +174,7 @@
 
         <span class="k">return</span> <span class="n">top_k_logits</span></div>
 
-<div class="viewcode-block" id="GumbelSoftmaxTopK.sample"><a class="viewcode-back" href="../../../train.html#relaxit.distributions.GumbelSoftmaxTopK.sample">[docs]</a>    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<div class="viewcode-block" id="GumbelSoftmaxTopK.sample"><a class="viewcode-back" href="../../../distributions.html#relaxit.distributions.GumbelSoftmaxTopK.sample">[docs]</a>    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generates a sample from the distribution with no grad.</span>
 
@@ -195,7 +184,7 @@
         <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rsample</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="GumbelSoftmaxTopK.log_prob"><a class="viewcode-back" href="../../../train.html#relaxit.distributions.GumbelSoftmaxTopK.log_prob">[docs]</a>    <span class="k">def</span> <span class="nf">log_prob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<div class="viewcode-block" id="GumbelSoftmaxTopK.log_prob"><a class="viewcode-back" href="../../../distributions.html#relaxit.distributions.GumbelSoftmaxTopK.log_prob">[docs]</a>    <span class="k">def</span> <span class="nf">log_prob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the log probability of the given value.</span>
 <span class="sd">        :param value: The value for which to compute the log probability.</span>
@@ -233,7 +222,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Dorin Daniil, Igor Ignashin, Nikita Kiselev, Andrey Veprikov.</p>
+    <p>&#169; Copyright 2024, Daniil Dorin, Igor Ignashin, Nikita Kiselev, Andrey Veprikov.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
