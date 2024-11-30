@@ -5,7 +5,7 @@ Just Relax It
 
 "Just Relax It" is a cutting-edge Python library designed to streamline the optimization of discrete probability distributions in neural networks, offering a suite of advanced relaxation techniques compatible with PyTorch.
 
-.. mdinclude:: ../../README.md
+.. include:: ../../README.md
 
 .. toctree::
    :maxdepth: 1
