@@ -79,8 +79,9 @@
              
   <section id="quickstart">
 <h1>Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading"></a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/github/intsystems/discrete-variables-relaxation/blob/main/demo/quickstart.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">relaxit.distributions.InvertibleGaussian</span> <span class="kn">import</span> <span class="n">InvertibleGaussian</span>
+<span class="kn">from</span> <span class="nn">relaxit.distributions</span> <span class="kn">import</span> <span class="n">InvertibleGaussian</span>
 
 <span class="c1"># initialize distribution parameters</span>
 <span class="n">loc</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -92,6 +93,8 @@
 
 <span class="c1"># sample with reparameterization</span>
 <span class="n">sample</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">rsample</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;sample.shape:&#39;</span><span class="p">,</span> <span class="n">sample</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;sample.requires_grad:&#39;</span><span class="p">,</span> <span class="n">sample</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>

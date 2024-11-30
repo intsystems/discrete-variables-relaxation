@@ -1,10 +1,9 @@
 ## Install
 
-<!-- ### Install via Pip
-First install PyTorch. Then install `relaxit` via pip:
+### Install using pip
 ```bash
-pip install pyro-ppl 
-``` -->
+pip install relaxit
+```
 
 ### Install from source
 ```bash

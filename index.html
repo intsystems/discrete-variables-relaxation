@@ -82,6 +82,15 @@
 <a class="reference internal image-reference" href="_images/logo.png"><img alt="_images/logo.png" class="align-center" src="_images/logo.png" style="width: 200px;" />
 </a>
 <p>“Just Relax It” is a cutting-edge Python library designed to streamline the optimization of discrete probability distributions in neural networks, offering a suite of advanced relaxation techniques compatible with PyTorch.</p>
+<section id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading"></a></h2>
+<p>For lots of mathematical problems we need an ability to sample discrete random variables.
+The problem is that due to continuos nature of deep learning optimization, the usage of truely discrete random variables is infeasible.
+Thus we use different relaxation method.
+One of them, <a class="reference external" href="https://arxiv.org/abs/1611.00712">Concrete distribution</a> or <a class="reference external" href="https://arxiv.org/abs/1611.01144">Gumbel-Softmax</a> (this is one distribution proposed in parallel by two research groups) is implemented in different DL packages.
+In this project we implement different alternatives to it.</p>
+<a class="reference internal image-reference" href="_images/overview.png"><img alt="_images/overview.png" class="align-center" src="_images/overview.png" style="width: 600px;" />
+</a>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Guidelines</span></p>
 <ul>
@@ -96,6 +105,7 @@
 <li class="toctree-l1"><a class="reference internal" href="source/relaxit.distributions.html">relaxit.distributions package</a></li>
 </ul>
 </div>
+</section>
 </section>
 
 
