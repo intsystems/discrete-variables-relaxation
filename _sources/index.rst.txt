@@ -9,11 +9,13 @@ Just Relax It
    :maxdepth: 1
    :caption: Guidelines
    
-   installation
+   install
+   quickstart
 
 .. toctree::
    :maxdepth: 1
    :caption: Code
 
-   distributions
+   source/modules
+   source/relaxit.distributions
 
