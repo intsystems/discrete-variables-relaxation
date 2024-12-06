@@ -1,4 +1,4 @@
-:github_url: https://github.com/intsystems/discrete-variables-relaxation
+:github_url: https://github.com/intsystems/relaxit
 
 Just Relax It
 =============

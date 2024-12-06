@@ -1,5 +1,5 @@
 ## Quickstart
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/intsystems/discrete-variables-relaxation/blob/main/demo/quickstart.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/intsystems/relaxit/blob/main/demo/quickstart.ipynb)
 ```python
 import torch
 from relaxit.distributions import InvertibleGaussian

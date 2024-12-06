@@ -41,7 +41,7 @@ html_extra_path = []
 html_context = {
     "display_github": True,
     "github_user": "Intelligent-Systems-Phystech",
-    "github_repo": "discrete-variables-relaxation",
+    "github_repo": "relaxit",
     "github_version": "main",
     "conf_py_path": "./doc/",
 }

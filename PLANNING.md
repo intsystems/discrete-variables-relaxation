@@ -31,7 +31,7 @@ In this project, we are going to implement the following algorithms:
 7. [REINFORCE](http://www.cs.toronto.edu/~tingwuwang/REINFORCE.pdf)  (not a distribution actually, think how to integrate it with other distributions)
 8. [Logit-normal distribution](https://en.wikipedia.org/wiki/Logit-normal_distribution) with KL implemented and [Laplace-form approximation of Dirichlet](https://stats.stackexchange.com/questions/535560/approximating-the-logit-normal-by-dirichlet)
 
-You are invited to track our progress on the [main page](https://github.com/intsystems/discrete-variables-relaxation/tree/main?tab=readme-ov-file#-algorithms-to-implement-from-simplest-to-hardest).
+You are invited to track our progress on the [main page](https://github.com/intsystems/relaxit/tree/main?tab=readme-ov-file#-algorithms-to-implement-from-simplest-to-hardest).
 
 ## Architecture of the project <a name="architecture"></a>
 

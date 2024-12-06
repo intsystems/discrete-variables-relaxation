@@ -23,7 +23,7 @@ setup(
     description="A Python library for discrete variables relaxation",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/intsystems/discrete-variables-relaxation",
+    url="https://github.com/intsystems/relaxit",
     package_dir= {"": "src"}, 
     packages=find_packages(where="src"),
     install_requires=["pyro-ppl>=1.9.1"],

@@ -14,29 +14,29 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/intsystems/discrete-variables-relaxation/tree/main/tests">
-        <img alt="Coverage_2" src="https://github.com/intsystems/discrete-variables-relaxation/actions/workflows/test.yml/badge.svg" />
+    <a href="https://github.com/intsystems/relaxit/tree/main/tests">
+        <img alt="Coverage_2" src="https://github.com/intsystems/relaxit/actions/workflows/test.yml/badge.svg" />
     </a>
-    <a href="https://github.com/intsystems/discrete-variables-relaxation/tree/main/tests">
+    <a href="https://github.com/intsystems/relaxit/tree/main/tests">
         <img alt="Coverage" src="coverage-badge.svg" />
     </a>
-    <a href="https://intsystems.github.io/discrete-variables-relaxation">
-        <img alt="Docs" src="https://github.com/intsystems/discrete-variables-relaxation/actions/workflows/docs.yml/badge.svg" />
+    <a href="https://intsystems.github.io/relaxit">
+        <img alt="Docs" src="https://github.com/intsystems/relaxit/actions/workflows/docs.yml/badge.svg" />
     </a>
 </p>
 
 <p align="center">
-    <a href="https://github.com/intsystems/discrete-variables-relaxation/blob/main/LICENSE">
-        <img alt="License" src="https://badgen.net/github/license/intsystems/discrete-variables-relaxation?color=green" />
+    <a href="https://github.com/intsystems/relaxit/blob/main/LICENSE">
+        <img alt="License" src="https://badgen.net/github/license/intsystems/relaxit?color=green" />
     </a>
-    <a href="https://github.com/intsystems/discrete-variables-relaxation/graphs/contributors">
-        <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/intsystems/discrete-variables-relaxation" />
+    <a href="https://github.com/intsystems/relaxit/graphs/contributors">
+        <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/intsystems/relaxit" />
     </a>
-    <a href="https://github.com/intsystems/discrete-variables-relaxation/issues">
-        <img alt="Issues" src="https://img.shields.io/github/issues-closed/intsystems/discrete-variables-relaxation?color=0088ff" />
+    <a href="https://github.com/intsystems/relaxit/issues">
+        <img alt="Issues" src="https://img.shields.io/github/issues-closed/intsystems/relaxit?color=0088ff" />
     </a>
-    <a href="https://github.com/intsystems/discrete-variables-relaxation/pulls">
-        <img alt="GitHub Pull Requests" src="https://img.shields.io/github/issues-pr-closed/intsystems/discrete-variables-relaxation?color=7f29d6" />
+    <a href="https://github.com/intsystems/relaxit/pulls">
+        <img alt="GitHub Pull Requests" src="https://img.shields.io/github/issues-pr-closed/intsystems/relaxit?color=7f29d6" />
     </a>
 </p>
 
@@ -44,12 +44,12 @@
 
 ## 📬 Assets
 
-1. [Technical Meeting 1 - Presentation](https://github.com/intsystems/discrete-variables-relaxation/blob/main/assets/presentation_tm1.pdf)
-2. [Technical Meeting 2 - Jupyter Notebook](https://github.com/intsystems/discrete-variables-relaxation/blob/main/basic/basic_code.ipynb)
-3. [Technical Meeting 3 - Jupyter Notebook](https://github.com/intsystems/discrete-variables-relaxation/blob/main/demo/vizualization.ipynb)
-4. [Blog Post](https://github.com/intsystems/discrete-variables-relaxation/blob/main/assets/blog-post.pdf)
-5. [Documentation](https://intsystems.github.io/discrete-variables-relaxation/)
-6. [Tests](https://github.com/intsystems/discrete-variables-relaxation/tree/main/tests)
+1. [Technical Meeting 1 - Presentation](https://github.com/intsystems/relaxit/blob/main/assets/presentation_tm1.pdf)
+2. [Technical Meeting 2 - Jupyter Notebook](https://github.com/intsystems/relaxit/blob/main/basic/basic_code.ipynb)
+3. [Technical Meeting 3 - Jupyter Notebook](https://github.com/intsystems/relaxit/blob/main/demo/vizualization.ipynb)
+4. [Blog Post](https://github.com/intsystems/relaxit/blob/main/assets/blog-post.pdf)
+5. [Documentation](https://intsystems.github.io/relaxit/)
+6. [Tests](https://github.com/intsystems/relaxit/tree/main/tests)
 
 ## 💡 Motivation
 For lots of mathematical problems we need an ability to sample discrete random variables.
@@ -62,14 +62,14 @@ In this project we implement different alternatives to it.
 </div>
 
 ## 🗃 Algorithms
-- [x] [Relaxed Bernoulli](https://github.com/intsystems/discrete-variables-relaxation/blob/main/src/relaxit/distributions/GaussianRelaxedBernoulli.py), also see [📝 paper](http://proceedings.mlr.press/v119/yamada20a/yamada20a.pdf) 
-- [x] [Correlated relaxed Bernoulli](https://github.com/intsystems/discrete-variables-relaxation/blob/main/src/relaxit/distributions/CorrelatedRelaxedBernoulli.py), also see [📝 paper](https://openreview.net/pdf?id=oDFvtxzPOx)
-- [x] [Gumbel-softmax TOP-K](https://github.com/intsystems/discrete-variables-relaxation/blob/main/src/relaxit/distributions/GumbelSoftmaxTopK.py), also see [📝 paper](https://arxiv.org/pdf/1903.06059) 
-- [x] [Straight-Through Bernoulli](https://github.com/intsystems/discrete-variables-relaxation/blob/main/src/relaxit/distributions/StraightThroughBernoulli.py), also see [📝 paper](https://arxiv.org/abs/1910.02176) 
-- [x] [Stochastic Times Smooth](https://github.com/intsystems/discrete-variables-relaxation/blob/main/src/relaxit/distributions/StochasticTimesSmooth.py), also see [📝 paper](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=62c76ca0b2790c34e85ba1cce09d47be317c7235) 
-- [x] [Invertible Gaussian](https://github.com/intsystems/discrete-variables-relaxation/blob/main/src/relaxit/distributions/InvertibleGaussian.py) with [KL implemented](https://github.com/intsystems/discrete-variables-relaxation/blob/f398ebbbac703582de392bc33d89b55c6c99ea68/src/relaxit/distributions/kl.py#L7), also see [📝 paper](https://arxiv.org/abs/1912.09588)
-- [x] [Hard Concrete](https://github.com/intsystems/discrete-variables-relaxation/blob/main/src/relaxit/distributions/HardConcrete.py), also see [📝 paper](https://arxiv.org/pdf/1712.01312) 
-- [x] [Logistic-Normal](https://github.com/intsystems/discrete-variables-relaxation/blob/main/src/relaxit/distributions/LogisticNormalSoftmax.py) and [Laplace-form approximation of Dirichlet](https://github.com/intsystems/discrete-variables-relaxation/blob/main/src/relaxit/distributions/approx.py), also see [ℹ️ wiki](https://en.wikipedia.org/wiki/Logit-normal_distribution) and [💻 stackexchange](https://stats.stackexchange.com/questions/535560/approximating-the-logit-normal-by-dirichlet) 
+- [x] [Relaxed Bernoulli](https://github.com/intsystems/relaxit/blob/main/src/relaxit/distributions/GaussianRelaxedBernoulli.py), also see [📝 paper](http://proceedings.mlr.press/v119/yamada20a/yamada20a.pdf) 
+- [x] [Correlated relaxed Bernoulli](https://github.com/intsystems/relaxit/blob/main/src/relaxit/distributions/CorrelatedRelaxedBernoulli.py), also see [📝 paper](https://openreview.net/pdf?id=oDFvtxzPOx)
+- [x] [Gumbel-softmax TOP-K](https://github.com/intsystems/relaxit/blob/main/src/relaxit/distributions/GumbelSoftmaxTopK.py), also see [📝 paper](https://arxiv.org/pdf/1903.06059) 
+- [x] [Straight-Through Bernoulli](https://github.com/intsystems/relaxit/blob/main/src/relaxit/distributions/StraightThroughBernoulli.py), also see [📝 paper](https://arxiv.org/abs/1910.02176) 
+- [x] [Stochastic Times Smooth](https://github.com/intsystems/relaxit/blob/main/src/relaxit/distributions/StochasticTimesSmooth.py), also see [📝 paper](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=62c76ca0b2790c34e85ba1cce09d47be317c7235) 
+- [x] [Invertible Gaussian](https://github.com/intsystems/relaxit/blob/main/src/relaxit/distributions/InvertibleGaussian.py) with [KL implemented](https://github.com/intsystems/relaxit/blob/f398ebbbac703582de392bc33d89b55c6c99ea68/src/relaxit/distributions/kl.py#L7), also see [📝 paper](https://arxiv.org/abs/1912.09588)
+- [x] [Hard Concrete](https://github.com/intsystems/relaxit/blob/main/src/relaxit/distributions/HardConcrete.py), also see [📝 paper](https://arxiv.org/pdf/1712.01312) 
+- [x] [Logistic-Normal](https://github.com/intsystems/relaxit/blob/main/src/relaxit/distributions/LogisticNormalSoftmax.py) and [Laplace-form approximation of Dirichlet](https://github.com/intsystems/relaxit/blob/main/src/relaxit/distributions/approx.py), also see [ℹ️ wiki](https://en.wikipedia.org/wiki/Logit-normal_distribution) and [💻 stackexchange](https://stats.stackexchange.com/questions/535560/approximating-the-logit-normal-by-dirichlet) 
 
 ## 🛠️ Install
 
@@ -80,18 +80,18 @@ pip install relaxit
 
 ### Install from source
 ```bash
-pip install git+https://github.com/intsystems/discrete-variables-relaxation
+pip install git+https://github.com/intsystems/relaxit
 ```
 
 ### Install via Git clone
 ```bash
-git clone https://github.com/intsystems/discrete-variables-relaxation
-cd discrete-variables-relaxation
+git clone https://github.com/intsystems/relaxit
+cd relaxit
 pip install -e .
 ```
 
 ## 🚀 Quickstart 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/intsystems/discrete-variables-relaxation/blob/main/demo/quickstart.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/intsystems/relaxit/blob/main/demo/quickstart.ipynb)
 ```python
 import torch
 from relaxit.distributions import InvertibleGaussian
@@ -114,14 +114,14 @@ print('sample.requires_grad:', sample.requires_grad)
 | Laplace Bridge | REINFORCE in Acrobot environment | VAE with discrete latents |
 | :---: | :---: | :---: |
 | ![Laplace Bridge](https://github.com/user-attachments/assets/ac5d5a71-e7d7-4ec3-b9ca-9b72d958eb41) | ![REINFORCE](https://gymnasium.farama.org/_images/acrobot.gif) | ![VAE](https://github.com/user-attachments/assets/937585c4-df84-4ab0-a2b9-ea6a73997793) |
-| [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/intsystems/discrete-variables-relaxation/blob/main/demo/laplace-bridge.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/intsystems/discrete-variables-relaxation/blob/main/demo/reinforce.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/intsystems/discrete-variables-relaxation/blob/main/demo/demo.ipynb) |
+| [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/intsystems/relaxit/blob/main/demo/laplace-bridge.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/intsystems/relaxit/blob/main/demo/reinforce.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/intsystems/relaxit/blob/main/demo/demo.ipynb) |
 
 For demonstration purposes, we divide our algorithms in three[^*] different groups. Each group relates to the particular demo code:
-- [Laplace bridge between Dirichlet and LogisticNormal distributions](https://github.com/intsystems/discrete-variables-relaxation/blob/main/demo/laplace-bridge.ipynb)
-- [REINFORCE](https://github.com/intsystems/discrete-variables-relaxation/blob/main/demo/reinforce.ipynb)
-- [Other relaxation methods](https://github.com/intsystems/discrete-variables-relaxation/blob/main/demo/demo.ipynb)
+- [Laplace bridge between Dirichlet and LogisticNormal distributions](https://github.com/intsystems/relaxit/blob/main/demo/laplace-bridge.ipynb)
+- [REINFORCE](https://github.com/intsystems/relaxit/blob/main/demo/reinforce.ipynb)
+- [Other relaxation methods](https://github.com/intsystems/relaxit/blob/main/demo/demo.ipynb)
 
-We describe our demo experiments [here](https://github.com/intsystems/discrete-variables-relaxation/tree/main/demo).
+We describe our demo experiments [here](https://github.com/intsystems/relaxit/tree/main/demo).
 
 [^*]: We also implement REINFORCE algorithm as a *score function* estimator alternative for our relaxation methods that are inherently *pathwise derivative* estimators. This one is implemented only for demo experiments and is not included into the source code of package.
 

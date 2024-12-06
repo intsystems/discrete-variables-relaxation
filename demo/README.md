@@ -7,10 +7,10 @@ To use this demo code, you need to have Python and the required packages install
 
 ```bash
 # Clone the repository:
-git clone https://github.com/intsystems/discrete-variables-relaxation.git
+git clone https://github.com/intsystems/relaxit.git
 
 # Navigate to the repository directory:
-cd discrete-variables-relaxation/demo
+cd relaxit/demo
 
 # Create Virtual Environment with Conda:
 conda create --name relaxit-demo python=3.10

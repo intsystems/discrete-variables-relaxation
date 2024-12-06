@@ -33,7 +33,7 @@ jobs:
           pip install -U myst_parser
           pip install torch
           pip install pyro-ppl
-          pip install git+https://github.com/intsystems/discrete-variables-relaxation
+          pip install git+https://github.com/intsystems/relaxit
           
       - name: Build Docs
         run: |
