@@ -1,11 +1,6 @@
 relaxit.distributions
 =====================
 
-.. automodule:: relaxit.distributions
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Distribution Classes
 --------------------
 
