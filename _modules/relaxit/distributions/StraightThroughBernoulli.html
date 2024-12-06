@@ -81,7 +81,7 @@
 
 
 <div class="viewcode-block" id="StraightThroughBernoulli">
-<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.StraightThroughBernoulli">[docs]</a>
+<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.StraightThroughBernoulli.StraightThroughBernoulli">[docs]</a>
 <span class="k">class</span> <span class="nc">StraightThroughBernoulli</span><span class="p">(</span><span class="n">Bernoulli</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Implementation of the Straight Through Bernoulli from https://arxiv.org/abs/1910.02176</span>
@@ -101,7 +101,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     
 <div class="viewcode-block" id="StraightThroughBernoulli.rsample">
-<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.StraightThroughBernoulli.rsample">[docs]</a>
+<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.StraightThroughBernoulli.StraightThroughBernoulli.rsample">[docs]</a>
     <span class="k">def</span> <span class="nf">rsample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_shape</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">()):</span>
         <span class="n">shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extended_shape</span><span class="p">(</span><span class="n">sample_shape</span><span class="p">)</span>
         <span class="n">probs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">probs</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>

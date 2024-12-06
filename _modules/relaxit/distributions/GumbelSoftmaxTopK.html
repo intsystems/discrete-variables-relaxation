@@ -84,7 +84,7 @@
 
 
 <div class="viewcode-block" id="GumbelSoftmaxTopK">
-<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.GumbelSoftmaxTopK">[docs]</a>
+<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.GumbelSoftmaxTopK.GumbelSoftmaxTopK">[docs]</a>
 <span class="k">class</span> <span class="nc">GumbelSoftmaxTopK</span><span class="p">(</span><span class="n">TorchDistribution</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Implementation of the Gaussian-Softmax top-K trick from https://arxiv.org/pdf/1903.06059.</span>
@@ -164,7 +164,7 @@
         <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">()</span>
 
 <div class="viewcode-block" id="GumbelSoftmaxTopK.rsample">
-<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.GumbelSoftmaxTopK.rsample">[docs]</a>
+<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.GumbelSoftmaxTopK.GumbelSoftmaxTopK.rsample">[docs]</a>
     <span class="k">def</span> <span class="nf">rsample</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generates a sample from the distribution using the Gaussian-soft max topK trick.</span>
@@ -184,7 +184,7 @@
 
 
 <div class="viewcode-block" id="GumbelSoftmaxTopK.sample">
-<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.GumbelSoftmaxTopK.sample">[docs]</a>
+<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.GumbelSoftmaxTopK.GumbelSoftmaxTopK.sample">[docs]</a>
     <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generates a sample from the distribution with no grad.</span>
@@ -197,7 +197,7 @@
 
 
 <div class="viewcode-block" id="GumbelSoftmaxTopK.log_prob">
-<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.GumbelSoftmaxTopK.log_prob">[docs]</a>
+<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.GumbelSoftmaxTopK.GumbelSoftmaxTopK.log_prob">[docs]</a>
     <span class="k">def</span> <span class="nf">log_prob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the log probability of the given value.</span>

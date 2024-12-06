@@ -82,7 +82,7 @@
 
 
 <div class="viewcode-block" id="HardConcrete">
-<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.HardConcrete">[docs]</a>
+<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.HardConcrete.HardConcrete">[docs]</a>
 <span class="k">class</span> <span class="nc">HardConcrete</span><span class="p">(</span><span class="n">TorchDistribution</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 
@@ -146,7 +146,7 @@
         <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">()</span>
 
 <div class="viewcode-block" id="HardConcrete.rsample">
-<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.HardConcrete.rsample">[docs]</a>
+<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.HardConcrete.HardConcrete.rsample">[docs]</a>
     <span class="k">def</span> <span class="nf">rsample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_shape</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generates a sample from the distribution using the reparameterization trick.</span>
@@ -166,7 +166,7 @@
 
 
 <div class="viewcode-block" id="HardConcrete.sample">
-<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.HardConcrete.sample">[docs]</a>
+<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.HardConcrete.HardConcrete.sample">[docs]</a>
     <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_shape</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generates a sample from the distribution.</span>
@@ -239,7 +239,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Q_prob</span><span class="p">((</span><span class="n">value</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xi</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="p">))</span>
 
 <div class="viewcode-block" id="HardConcrete.log_prob">
-<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.HardConcrete.log_prob">[docs]</a>
+<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.HardConcrete.HardConcrete.log_prob">[docs]</a>
     <span class="k">def</span> <span class="nf">log_prob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the log probability of the given value.</span>

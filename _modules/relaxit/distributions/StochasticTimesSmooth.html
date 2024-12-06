@@ -81,7 +81,7 @@
 
 
 <div class="viewcode-block" id="StochasticTimesSmooth">
-<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.StochasticTimesSmooth">[docs]</a>
+<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.StochasticTimesSmooth.StochasticTimesSmooth">[docs]</a>
 <span class="k">class</span> <span class="nc">StochasticTimesSmooth</span><span class="p">(</span><span class="n">Bernoulli</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Implementation of the Stochastic Times Smooth from https://citeseerx.ist.psu.edu/document?repid=rep1&amp;type=pdf&amp;doi=62c76ca0b2790c34e85ba1cce09d47be317c7235</span>
@@ -101,7 +101,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     
 <div class="viewcode-block" id="StochasticTimesSmooth.rsample">
-<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.StochasticTimesSmooth.rsample">[docs]</a>
+<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.StochasticTimesSmooth.StochasticTimesSmooth.rsample">[docs]</a>
     <span class="k">def</span> <span class="nf">rsample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_shape</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">()):</span>
         <span class="n">shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extended_shape</span><span class="p">(</span><span class="n">sample_shape</span><span class="p">)</span>
         <span class="n">sqrt_probs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">probs</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span>

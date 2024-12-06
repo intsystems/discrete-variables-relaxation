@@ -83,7 +83,7 @@
 
 
 <div class="viewcode-block" id="InvertibleGaussian">
-<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.InvertibleGaussian">[docs]</a>
+<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.InvertibleGaussian.InvertibleGaussian">[docs]</a>
 <span class="k">class</span> <span class="nc">InvertibleGaussian</span><span class="p">(</span><span class="n">TorchDistribution</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Invertible Gaussian distribution, as it was presented in https://arxiv.org/abs/1912.09588.</span>
@@ -134,7 +134,7 @@
         <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">()</span>
 
 <div class="viewcode-block" id="InvertibleGaussian.softmax_plus_plus">
-<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.InvertibleGaussian.softmax_plus_plus">[docs]</a>
+<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.InvertibleGaussian.InvertibleGaussian.softmax_plus_plus">[docs]</a>
     <span class="k">def</span> <span class="nf">softmax_plus_plus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the softmax++ function.</span>
@@ -163,7 +163,7 @@
 
 
 <div class="viewcode-block" id="InvertibleGaussian.rsample">
-<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.InvertibleGaussian.rsample">[docs]</a>
+<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.InvertibleGaussian.InvertibleGaussian.rsample">[docs]</a>
     <span class="k">def</span> <span class="nf">rsample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_shape</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">()):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generates a sample from the distribution using the reparameterization trick.</span>
@@ -180,7 +180,7 @@
 
 
 <div class="viewcode-block" id="InvertibleGaussian.log_prob">
-<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.InvertibleGaussian.log_prob">[docs]</a>
+<a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.InvertibleGaussian.InvertibleGaussian.log_prob">[docs]</a>
     <span class="k">def</span> <span class="nf">log_prob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the log likelihood of a value.</span>
