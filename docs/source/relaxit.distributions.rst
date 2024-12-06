@@ -1,85 +1,63 @@
-relaxit.distributions package
-=============================
+relaxit.distributions
+=====================
 
-Submodules
-----------
-
-relaxit.distributions.CorrelatedRelaxedBernoulli module
--------------------------------------------------------
-
-.. automodule:: relaxit.distributions.CorrelatedRelaxedBernoulli
+.. automodule:: relaxit.distributions
    :members:
    :undoc-members:
    :show-inheritance:
 
-relaxit.distributions.GaussianRelaxedBernoulli module
------------------------------------------------------
+Distribution Classes
+--------------------
 
-.. automodule:: relaxit.distributions.GaussianRelaxedBernoulli
+.. autoclass:: relaxit.distributions.CorrelatedRelaxedBernoulli.CorrelatedRelaxedBernoulli
    :members:
    :undoc-members:
    :show-inheritance:
 
-relaxit.distributions.GumbelSoftmaxTopK module
-----------------------------------------------
-
-.. automodule:: relaxit.distributions.GumbelSoftmaxTopK
+.. autoclass:: relaxit.distributions.GaussianRelaxedBernoulli.GaussianRelaxedBernoulli
    :members:
    :undoc-members:
    :show-inheritance:
 
-relaxit.distributions.HardConcrete module
------------------------------------------
-
-.. automodule:: relaxit.distributions.HardConcrete
+.. autoclass:: relaxit.distributions.GumbelSoftmaxTopK.GumbelSoftmaxTopK
    :members:
    :undoc-members:
    :show-inheritance:
 
-relaxit.distributions.InvertibleGaussian module
------------------------------------------------
-
-.. automodule:: relaxit.distributions.InvertibleGaussian
+.. autoclass:: relaxit.distributions.HardConcrete.HardConcrete
    :members:
    :undoc-members:
    :show-inheritance:
 
-relaxit.distributions.LogisticNormalSoftmax module
---------------------------------------------------
-
-.. automodule:: relaxit.distributions.LogisticNormalSoftmax
+.. autoclass:: relaxit.distributions.InvertibleGaussian.InvertibleGaussian
    :members:
    :undoc-members:
    :show-inheritance:
 
-relaxit.distributions.StraightThroughBernoulli module
------------------------------------------------------
-
-.. automodule:: relaxit.distributions.StraightThroughBernoulli
+.. autoclass:: relaxit.distributions.LogisticNormalSoftmax.LogisticNormalSoftmax
    :members:
    :undoc-members:
    :show-inheritance:
 
-relaxit.distributions.approx module
------------------------------------
+.. autoclass:: relaxit.distributions.StochasticTimesSmooth.StochasticTimesSmooth
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoclass:: relaxit.distributions.StraightThroughBernoulli.StraightThroughBernoulli
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Utility Modules
+---------------
 
 .. automodule:: relaxit.distributions.approx
    :members:
    :undoc-members:
    :show-inheritance:
 
-relaxit.distributions.kl module
--------------------------------
-
 .. automodule:: relaxit.distributions.kl
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: relaxit.distributions
    :members:
    :undoc-members:
    :show-inheritance:

@@ -6,7 +6,7 @@ from torch.distributions.utils import _standard_normal
 
 class InvertibleGaussian(TorchDistribution):
     """
-    Invertible Gaussian distribution class inheriting from Pyro's TorchDistribution.
+    Invertible Gaussian distribution, as it was presented in https://arxiv.org/abs/1912.09588.
 
     Parameters:
     - loc (Tensor): The mean (mu) of the normal distribution.

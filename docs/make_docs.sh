@@ -1,2 +1,7 @@
-rm -rf docs/source  
-sphinx-apidoc -o docs/source/ src/relaxit
+#!/bin/bash
+
+# Generate API documentation
+# sphinx-apidoc -o source ../src/relaxit
+
+# Build the documentation
+sphinx-build -b html source build/html

@@ -26,5 +26,5 @@ setup(
     url="https://github.com/intsystems/discrete-variables-relaxation",
     package_dir= {"": "src"}, 
     packages=find_packages(where="src"),
-    install_requires=["pyro-ppl==1.9.1"],
+    install_requires=["pyro-ppl>=1.9.1"],
 )

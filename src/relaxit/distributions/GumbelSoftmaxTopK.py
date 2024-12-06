@@ -1,13 +1,13 @@
 import torch
 import torch.nn.functional as F
-from torch.distributions import constraints
 from pyro.distributions.torch_distribution import TorchDistribution
 from torch.distributions import constraints
+from torch.distributions.utils import probs_to_logits, logits_to_probs
 
 
 class GumbelSoftmaxTopK(TorchDistribution):
     r"""
-    Implimentation of the Gaussian-soft max topK trick from https://arxiv.org/pdf/1903.06059
+    Implementation of the Gaussian-Softmax top-K trick from https://arxiv.org/pdf/1903.06059.
 
     :param a: logits.
     :type a: torch.Tensor
@@ -50,10 +50,14 @@ class GumbelSoftmaxTopK(TorchDistribution):
         :param validate_args: Whether to validate arguments.
         :type validate_args: bool
         """
-        if probs is None and logits is None:
-            raise ValueError("Pass `probs` or `logits`!")
-        elif probs is None:
-            self.probs = logits / logits.sum(dim=-1, keepdim=True)
+        if (probs is None) == (logits is None):
+            raise ValueError("Pass `probs` or `logits`, but not both of them!")
+        elif probs is not None:
+            self.probs = probs
+            self.logits = probs_to_logits(probs)
+        else:
+            self.logits = logits
+            self.probs = logits_to_probs(logits)
         self.K = K.int()  # Ensure K is a int tensor
         self.tau = tau
         self.hard = hard

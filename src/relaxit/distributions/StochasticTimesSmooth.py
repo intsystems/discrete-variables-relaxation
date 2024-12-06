@@ -2,9 +2,9 @@ import torch
 from pyro.distributions import Bernoulli
 
 
-class StraightThroughBernoulli(Bernoulli):
+class StochasticTimesSmooth(Bernoulli):
     r"""
-    Implementation of the Straight Through Bernoulli from https://arxiv.org/abs/1910.02176
+    Implementation of the Stochastic Times Smooth from https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=62c76ca0b2790c34e85ba1cce09d47be317c7235
     
     Creates a Bernoulli distribution parameterized by :attr:`probs`
     or :attr:`logits` (but not both).
@@ -13,7 +13,7 @@ class StraightThroughBernoulli(Bernoulli):
     and `0` with probability `1 - p`.
     
     However, supports gradient flow through parameters due to the 
-    straight through gradient estimator.
+    stochastic times smooth gradient estimator.
     """
     has_rsample = True
     
@@ -22,6 +22,6 @@ class StraightThroughBernoulli(Bernoulli):
     
     def rsample(self, sample_shape: torch.Size = torch.Size()):
         shape = self._extended_shape(sample_shape)
-        probs = self.probs.expand(shape)
-        sample = torch.bernoulli(probs).detach()
-        return sample + probs - probs.detach()
+        sqrt_probs = self.probs.expand(shape).sqrt()
+        sample = sqrt_probs * torch.bernoulli(sqrt_probs)
+        return sample

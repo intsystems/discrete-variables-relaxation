@@ -1,29 +1,36 @@
 import torch
 import sys, os
 
-sys.path.append(
-    os.path.abspath(os.path.join(os.path.dirname(__file__), "../..", "src"))
-)
-from relaxit.distributions.StraightThroughBernoulli import StraightThroughBernoulli
+from relaxit.distributions import StraightThroughBernoulli
 
-# Testing reparameterized sampling from the GaussianRelaxedBernoulli distribution
+# Testing reparameterized sampling and log prob from the StraightThroughBernoulli distribution
 
 
 def test_sample_shape():
-    a = torch.tensor([1, 2, 3])
-    distr = StraightThroughBernoulli(a=a)
-    samples = distr.rsample()
-    assert samples.shape == torch.Size([3])
+    logits = torch.tensor([[1.0, 2.0, 3.0], [6.0, 7.0, 8.0], [9.0, 10.0, 11.0]])
+    distribution = StraightThroughBernoulli(logits=logits)
+    sample = distribution.rsample()
+    assert sample.shape == logits.shape
 
 
-# def test_sample_grad():
-#     a = torch.tensor([1., 2., 3.], requires_grad=True)
-#     distr = StraightThroughBernoulli(a = a)
-#     samples = distr.rsample()
-#     assert samples.requires_grad == True
+def test_sample_grad():
+    logits = torch.tensor([1.0, 2.0, 3.0, 4.0, 5.0], requires_grad=True)
+    distribution = StraightThroughBernoulli(logits=logits)
+    sample = distribution.rsample()
+    assert sample.requires_grad == True
 
-# def test_log_prob():
-#     a = torch.tensor([1, 2, 3])
-#     distr = StraightThroughBernoulli(a = a)
-#     value = torch.Tensor([1.])
-#     print(distr.log_prob(value))
+
+def test_log_prob_shape():
+    logits = torch.tensor([1.0, 2.0, 3.0])
+    distribution = StraightThroughBernoulli(logits=logits)
+    value = torch.tensor([1.0, 1.0, 1.0])
+    log_prob = distribution.log_prob(value)
+    assert log_prob.shape == torch.Size([3])
+    
+
+def test_log_prob_grad():
+    logits = torch.tensor([1.0, 2.0, 3.0], requires_grad=True)
+    distribution = StraightThroughBernoulli(logits=logits)
+    value = torch.tensor([1.0, 1.0, 1.0])
+    log_prob = distribution.log_prob(value)
+    assert log_prob.requires_grad == True

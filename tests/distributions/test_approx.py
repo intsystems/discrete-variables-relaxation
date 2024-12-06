@@ -1,7 +1,6 @@
 import torch
 import sys
 
-sys.path.append("../../src")
 from relaxit.distributions.LogisticNormalSoftmax import LogisticNormalSoftmax
 from relaxit.distributions.approx import (
     lognorm_approximation_fn,

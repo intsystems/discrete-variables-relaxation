@@ -3,8 +3,6 @@ from pyro.distributions.torch import TransformedDistribution
 from pyro.distributions.transforms import SoftmaxTransform
 
 
-# We implement LogisticNormal distribution with SoftmaxTransform instead of
-# StickBreakingTransform, which is originally applied in the PyTorch and Pyro
 class LogisticNormalSoftmax(TransformedDistribution):
     r"""
     Creates a logistic-normal distribution parameterized by :attr:`loc` and :attr:`scale`

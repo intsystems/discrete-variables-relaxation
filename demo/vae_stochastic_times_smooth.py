@@ -9,7 +9,7 @@ from torch.nn import functional as F
 from torchvision import datasets, transforms
 from torchvision.utils import save_image
 
-from relaxit.distributions import StraightThroughBernoulli
+from relaxit.distributions import StochasticTimesSmooth
 
 
 def parse_arguments() -> argparse.Namespace:
@@ -57,7 +57,7 @@ torch.manual_seed(args.seed)
 
 device = torch.device("cuda" if args.cuda else "cpu")
 
-os.makedirs("./results/vae_straight_through_bernoulli", exist_ok=True)
+os.makedirs("./results/vae_stochastic_times_smooth", exist_ok=True)
 
 kwargs = {"num_workers": 1, "pin_memory": True} if args.cuda else {}
 train_loader = torch.utils.data.DataLoader(
@@ -80,7 +80,7 @@ steps = 0
 
 class VAE(nn.Module):
     """
-    Variational Autoencoder (VAE) with StraightThroughBernoulli distribution.
+    Variational Autoencoder (VAE) with StochasticTimesSmooth distribution.
     """
 
     def __init__(self) -> None:
@@ -130,7 +130,7 @@ class VAE(nn.Module):
             tuple[torch.Tensor, torch.Tensor]: Reconstructed input and latent code.
         """
         logits = self.encode(x.view(-1, 784))
-        q_z = StraightThroughBernoulli(logits=logits)
+        q_z = StochasticTimesSmooth(logits=logits)
         probs = q_z.probs
         z = q_z.rsample()
         return self.decode(z), probs
@@ -228,7 +228,7 @@ def test(epoch: int) -> None:
                 )
                 save_image(
                     comparison.cpu(),
-                    "results/vae_straight_through_bernoulli/reconstruction_"
+                    "results/vae_stochastic_times_smooth/reconstruction_"
                     + str(epoch)
                     + ".png",
                     nrow=n,
@@ -248,5 +248,5 @@ if __name__ == "__main__":
             sample = model.decode(sample).cpu()
             save_image(
                 sample.view(64, 1, 28, 28),
-                "results/vae_straight_through_bernoulli/sample_" + str(epoch) + ".png",
+                "results/vae_stochastic_times_smooth/sample_" + str(epoch) + ".png",
             )

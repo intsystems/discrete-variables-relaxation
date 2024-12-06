@@ -1,8 +1,7 @@
 import torch
 import sys
 
-sys.path.append("../../src")
-from relaxit.distributions.InvertibleGaussian import InvertibleGaussian
+from relaxit.distributions import InvertibleGaussian
 from relaxit.distributions.kl import kl_divergence
 
 # Testing KL-divergence between two IntertibleGaussian distributions

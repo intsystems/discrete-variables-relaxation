@@ -1,17 +1,20 @@
-from .GaussianRelaxedBernoulli import GaussianRelaxedBernoulli
 from .CorrelatedRelaxedBernoulli import CorrelatedRelaxedBernoulli
-from .StraightThroughBernoulli import StraightThroughBernoulli
+from .GaussianRelaxedBernoulli import GaussianRelaxedBernoulli
+from .GumbelSoftmaxTopK import GumbelSoftmaxTopK
 from .HardConcrete import HardConcrete
 from .InvertibleGaussian import InvertibleGaussian
 from .LogisticNormalSoftmax import LogisticNormalSoftmax
-from .GumbelSoftmaxTopK import GumbelSoftmaxTopK
+from .StochasticTimesSmooth import StochasticTimesSmooth
+from .StraightThroughBernoulli import StraightThroughBernoulli
+
 
 __all__ = [
-    "GaussianRelaxedBernoulli",
     "CorrelatedRelaxedBernoulli",
-    "StraightThroughBernoulli",
+    "GaussianRelaxedBernoulli",
+    "GumbelSoftmaxTopK",
     "HardConcrete",
     "InvertibleGaussian",
     "LogisticNormalSoftmax",
-    "GumbelSoftmaxTopK",
+    "StochasticTimesSmooth",
+    "StraightThroughBernoulli"
 ]
