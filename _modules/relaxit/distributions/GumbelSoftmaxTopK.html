@@ -78,16 +78,16 @@
   <h1>Source code for relaxit.distributions.GumbelSoftmaxTopK</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
-<span class="kn">from</span> <span class="nn">torch.distributions</span> <span class="kn">import</span> <span class="n">constraints</span>
 <span class="kn">from</span> <span class="nn">pyro.distributions.torch_distribution</span> <span class="kn">import</span> <span class="n">TorchDistribution</span>
 <span class="kn">from</span> <span class="nn">torch.distributions</span> <span class="kn">import</span> <span class="n">constraints</span>
+<span class="kn">from</span> <span class="nn">torch.distributions.utils</span> <span class="kn">import</span> <span class="n">probs_to_logits</span><span class="p">,</span> <span class="n">logits_to_probs</span>
 
 
 <div class="viewcode-block" id="GumbelSoftmaxTopK">
 <a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.GumbelSoftmaxTopK">[docs]</a>
 <span class="k">class</span> <span class="nc">GumbelSoftmaxTopK</span><span class="p">(</span><span class="n">TorchDistribution</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Implimentation of the Gaussian-soft max topK trick from https://arxiv.org/pdf/1903.06059</span>
+<span class="sd">    Implementation of the Gaussian-Softmax top-K trick from https://arxiv.org/pdf/1903.06059.</span>
 
 <span class="sd">    :param a: logits.</span>
 <span class="sd">    :type a: torch.Tensor</span>
@@ -130,10 +130,14 @@
 <span class="sd">        :param validate_args: Whether to validate arguments.</span>
 <span class="sd">        :type validate_args: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">probs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">logits</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Pass `probs` or `logits`!&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">probs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">probs</span> <span class="o">=</span> <span class="n">logits</span> <span class="o">/</span> <span class="n">logits</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">probs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">logits</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Pass `probs` or `logits`, but not both of them!&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">probs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">probs</span> <span class="o">=</span> <span class="n">probs</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logits</span> <span class="o">=</span> <span class="n">probs_to_logits</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logits</span> <span class="o">=</span> <span class="n">logits</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">probs</span> <span class="o">=</span> <span class="n">logits_to_probs</span><span class="p">(</span><span class="n">logits</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">K</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">int</span><span class="p">()</span>  <span class="c1"># Ensure K is a int tensor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tau</span> <span class="o">=</span> <span class="n">tau</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hard</span> <span class="o">=</span> <span class="n">hard</span>
