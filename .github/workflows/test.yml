@@ -40,31 +40,11 @@ jobs:
             echo "::set-output name=changes::true"
           fi
 
-      - name: Commit coverage badge
+      - name: Commit and push coverage badge
         if: steps.check_changes.outputs.changes == 'true'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git checkout -b coverage-badge
           git add coverage-badge.svg
           git commit -m "Update coverage badge"
-          git push --force origin coverage-badge
-
-      - name: Create Pull Request
-        if: steps.check_changes.outputs.changes == 'true'
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Update coverage badge"
-          branch: coverage-badge
-          base: main
-          title: "Update coverage badge"
-          body: "This pull request updates the coverage badge based on the latest test results."
-
-      - name: Merge Pull Request
-        if: steps.check_changes.outputs.changes == 'true'
-        uses: peter-evans/enable-pull-request-automerge@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          pull-request-number: ${{ steps.create-pull-request.outputs.pull-request-number }}
-          merge-method: merge
+          git push origin main
