@@ -1,16 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-The :mod:`relaxit.distributions.GaussianRelaxedBernoulli` contains classes:
-
-- :class:`relaxit.distributions.GaussianRelaxedBernoulli.GaussianRelaxedBernoulli`
-
-"""
-from __future__ import print_function
-
-__docformat__ = "restructuredtext"
-
-
 import torch
 from pyro.distributions.torch_distribution import TorchDistribution
 from torch.distributions import constraints
@@ -18,12 +5,11 @@ from torch.distributions import constraints
 
 class GaussianRelaxedBernoulli(TorchDistribution):
     r"""
-    Gaussian-based continuous Relaxed Bernoulli distribution class inheriting from Pyro's TorchDistribution.
+    Gaussian-based continuous Relaxed Bernoulli distribution class from https://arxiv.org/abs/1810.04247.
 
-    :param loc: Mean of the normal distribution.
-    :type loc: torch.Tensor
-    :param scale: Standard deviation of the normal distribution.
-    :type scale: torch.Tensor
+    Args:
+        loc (torch.Tensor): Mean of the normal distribution.
+        scale (torch.Tensor): Standard deviation of the normal distribution.
     """
 
     arg_constraints = {"loc": constraints.real, "scale": constraints.positive}
@@ -33,14 +19,13 @@ class GaussianRelaxedBernoulli(TorchDistribution):
     def __init__(
         self, loc: torch.Tensor, scale: torch.Tensor, validate_args: bool = None
     ):
-        r"""Initializes the GaussianRelaxedBernoulli distribution.
+        r"""
+        Initializes the GaussianRelaxedBernoulli distribution.
 
-        :param loc: Mean of the normal distribution.
-        :type loc: torch.Tensor
-        :param scale: Standard deviation of the normal distribution.
-        :type scale: torch.Tensor
-        :param validate_args: Whether to validate arguments.
-        :type validate_args: bool
+        Args:
+            loc (torch.Tensor): Mean of the normal distribution.
+            scale (torch.Tensor): Standard deviation of the normal distribution.
+            validate_args (bool, optional): Whether to validate arguments. Defaults to None.
         """
         self.loc = loc.float()  # Ensure loc is a float tensor
         self.scale = scale.float()  # Ensure scale is a float tensor
@@ -53,8 +38,11 @@ class GaussianRelaxedBernoulli(TorchDistribution):
         Returns the batch shape of the distribution.
 
         The batch shape represents the shape of independent distributions.
-        For example, if `loc` is vector of length 3,
+        For example, if `loc` is a vector of length 3,
         the batch shape will be `[3]`, indicating 3 independent Bernoulli distributions.
+
+        Returns:
+            torch.Size: The batch shape of the distribution.
         """
         return self.loc.shape
 
@@ -64,6 +52,9 @@ class GaussianRelaxedBernoulli(TorchDistribution):
         Returns the event shape of the distribution.
 
         The event shape represents the shape of each individual event.
+
+        Returns:
+            torch.Size: The event shape of the distribution.
         """
         return torch.Size()
 
@@ -71,10 +62,11 @@ class GaussianRelaxedBernoulli(TorchDistribution):
         r"""
         Generates a sample from the distribution using the reparameterization trick.
 
-        :param sample_shape: The shape of the sample.
-        :type sample_shape: torch.Size
-        :return: A sample from the distribution.
-        :rtype: torch.Tensor
+        Args:
+            sample_shape (torch.Size, optional): The shape of the sample. Defaults to torch.Size().
+
+        Returns:
+            torch.Tensor: A sample from the distribution.
         """
         eps = self.normal.sample(sample_shape)
         z = torch.clamp(self.loc + eps, 0, 1)
@@ -84,10 +76,11 @@ class GaussianRelaxedBernoulli(TorchDistribution):
         r"""
         Generates a sample from the distribution.
 
-        :param sample_shape: The shape of the sample.
-        :type sample_shape: torch.Size
-        :return: A sample from the distribution.
-        :rtype: torch.Tensor
+        Args:
+            sample_shape (torch.Size, optional): The shape of the sample. Defaults to torch.Size().
+
+        Returns:
+            torch.Tensor: A sample from the distribution.
         """
         with torch.no_grad():
             return self.rsample(sample_shape)
@@ -96,10 +89,11 @@ class GaussianRelaxedBernoulli(TorchDistribution):
         r"""
         Computes the log probability of the given value.
 
-        :param value: The value for which to compute the log probability.
-        :type value: torch.Tensor
-        :return: The log probability of the given value.
-        :rtype: torch.Tensor
+        Args:
+            value (torch.Tensor): The value for which to compute the log probability.
+
+        Returns:
+            torch.Tensor: The log probability of the given value.
         """
         if self._validate_args:
             self._validate_sample(value)
@@ -125,8 +119,8 @@ class GaussianRelaxedBernoulli(TorchDistribution):
         r"""
         Validates the given sample value.
 
-        :param value: The sample value to validate.
-        :type value: torch.Tensor
+        Args:
+            value (torch.Tensor): The sample value to validate.
         """
         if self._validate_args:
             if not (value >= 0).all() or not (value <= 1).all():

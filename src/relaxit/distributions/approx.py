@@ -6,7 +6,7 @@ from pyro.distributions import Dirichlet
 def lognorm_approximation_fn(
     dirichlet_distribution: Dirichlet,
 ) -> LogisticNormalSoftmax:
-    """
+    r"""
     Approximates a Dirichlet distribution with a LogisticNormalSoftmax distribution.
 
     Args:
@@ -37,7 +37,7 @@ def lognorm_approximation_fn(
 def dirichlet_approximation_fn(
     lognorm_distribution: LogisticNormalSoftmax,
 ) -> Dirichlet:
-    """
+    r"""
     Approximates a LogisticNormalSoftmax distribution with a Dirichlet distribution.
 
     Args:

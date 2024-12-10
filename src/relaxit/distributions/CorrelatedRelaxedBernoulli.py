@@ -1,15 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-The :mod:`relaxit.distributions.CorrelatedRelaxedBernoulli` contains classes:
-
-- :class:`relaxit.distributions.CorrelatedRelaxedBernoulli.CorrelatedRelaxedBernoulli`
-
-"""
-from __future__ import print_function
-
-__docformat__ = "restructuredtext"
-
 import torch
 from pyro.distributions.torch_distribution import TorchDistribution
 from torch.distributions import constraints
@@ -18,14 +6,12 @@ from torch.distributions.normal import Normal
 
 class CorrelatedRelaxedBernoulli(TorchDistribution):
     r"""
-    Correlated Relaxed Bernoulli distribution class inheriting from Pyro's TorchDistribution.
+    Correlated Relaxed Bernoulli distribution class from https://openreview.net/pdf?id=oDFvtxzPOx.
 
-    :param pi: Selection probability vector.
-    :type pi: torch.Tensor
-    :param R: Covariance matrix.
-    :type R: torch.Tensor
-    :param tau: Temperature hyper-parameter.
-    :type tau: torch.Tensor
+    Args:
+        pi (torch.Tensor): Selection probability vector.
+        R (torch.Tensor): Covariance matrix.
+        tau (torch.Tensor): Temperature hyper-parameter.
     """
 
     arg_constraints = {
@@ -43,16 +29,14 @@ class CorrelatedRelaxedBernoulli(TorchDistribution):
         tau: torch.Tensor,
         validate_args: bool = None,
     ):
-        r"""Initializes the CorrelatedRelaxedBernoulli distribution.
+        r"""
+        Initializes the CorrelatedRelaxedBernoulli distribution.
 
-        :param pi: Selection probability vector.
-        :type pi: torch.Tensor
-        :param R: Covariance matrix.
-        :type R: torch.Tensor
-        :param tau: Temperature hyper-parameter.
-        :type tau: torch.Tensor
-        :param validate_args: Whether to validate arguments.
-        :type validate_args: bool
+        Args:
+            pi (torch.Tensor): Selection probability vector.
+            R (torch.Tensor): Covariance matrix.
+            tau (torch.Tensor): Temperature hyper-parameter.
+            validate_args (bool, optional): Whether to validate arguments. Defaults to None.
         """
         if validate_args:
             self._validate_args(pi, R, tau)
@@ -73,6 +57,9 @@ class CorrelatedRelaxedBernoulli(TorchDistribution):
         The batch shape represents the shape of independent distributions.
         For example, if `pi` is a tensor of shape (batch_size, pi_shape),
         the batch shape will be `[batch_size]`, indicating batch_size independent Bernoulli distributions.
+
+        Returns:
+            torch.Size: The batch shape of the distribution.
         """
         return self.pi.shape[:-1]
 
@@ -84,6 +71,9 @@ class CorrelatedRelaxedBernoulli(TorchDistribution):
         The event shape represents the shape of each individual event.
         For example, if `pi` is a tensor of shape (batch_size, pi_shape),
         the event shape will be `[pi_shape]`.
+
+        Returns:
+            torch.Size: The event shape of the distribution.
         """
         return self.pi.shape[-1:]
 
@@ -91,10 +81,11 @@ class CorrelatedRelaxedBernoulli(TorchDistribution):
         r"""
         Generates a sample from the distribution using the reparameterization trick.
 
-        :param sample_shape: The shape of the sample.
-        :type sample_shape: torch.Size
-        :return: A sample from the distribution.
-        :rtype: torch.Tensor
+        Args:
+            sample_shape (torch.Size, optional): The shape of the sample. Defaults to torch.Size().
+
+        Returns:
+            torch.Tensor: A sample from the distribution.
         """
         # Sample from the standard multivariate normal distribution
         shape = tuple(sample_shape) + tuple(self.pi.shape)
@@ -120,10 +111,11 @@ class CorrelatedRelaxedBernoulli(TorchDistribution):
         r"""
         Generates a sample from the distribution.
 
-        :param sample_shape: The shape of the sample.
-        :type sample_shape: torch.Size
-        :return: A sample from the distribution.
-        :rtype: torch.Tensor
+        Args:
+            sample_shape (torch.Size, optional): The shape of the sample. Defaults to torch.Size().
+
+        Returns:
+            torch.Tensor: A sample from the distribution.
         """
         with torch.no_grad():
             return self.rsample(sample_shape)
@@ -132,10 +124,11 @@ class CorrelatedRelaxedBernoulli(TorchDistribution):
         r"""
         Computes the log probability of the given value.
 
-        :param value: The value for which to compute the log probability.
-        :type value: torch.Tensor
-        :return: The log probability of the given value.
-        :rtype: torch.Tensor
+        Args:
+            value (torch.Tensor): The value for which to compute the log probability.
+
+        Returns:
+            torch.Tensor: The log probability of the given value.
         """
         if self._validate_args:
             self._validate_sample(value)
@@ -155,8 +148,8 @@ class CorrelatedRelaxedBernoulli(TorchDistribution):
         r"""
         Validates the given sample value.
 
-        :param value: The sample value to validate.
-        :type value: torch.Tensor
+        Args:
+            value (torch.Tensor): The sample value to validate.
         """
         if self._validate_args:
             if not (value >= 0).all() or not (value <= 1).all():

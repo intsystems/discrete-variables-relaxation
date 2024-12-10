@@ -4,10 +4,15 @@ from torch.distributions import constraints
 
 
 class HardConcrete(TorchDistribution):
-    """
+    r"""
+    HardConcrete distribution class from https://arxiv.org/abs/1712.01312.
 
-    Parameters:
-
+    Args:
+        alpha (torch.Tensor): Parameter alpha.
+        beta (torch.Tensor): Parameter beta.
+        xi (torch.Tensor): Parameter xi.
+        gamma (torch.Tensor): Parameter gamma.
+        validate_args (bool, optional): Whether to validate arguments. Defaults to None.
     """
 
     arg_constraints = {
@@ -27,14 +32,17 @@ class HardConcrete(TorchDistribution):
         gamma: torch.Tensor,
         validate_args: bool = None,
     ):
-        """
+        r"""
+        Initializes the HardConcrete distribution.
 
         Args:
-        - a (Tensor): logits
-        - validate_args (bool): Whether to validate arguments.
+            alpha (torch.Tensor): Parameter alpha.
+            beta (torch.Tensor): Parameter beta.
+            xi (torch.Tensor): Parameter xi.
+            gamma (torch.Tensor): Parameter gamma.
+            validate_args (bool, optional): Whether to validate arguments. Defaults to None.
         """
-
-        self.alpha = alpha.float()  # Ensure a is a float tensor
+        self.alpha = alpha.float()  # Ensure alpha is a float tensor
         self.beta = beta.float()
         self.gamma = gamma.float()
         self.xi = xi.float()
@@ -43,37 +51,42 @@ class HardConcrete(TorchDistribution):
             torch.tensor([0.0]).to(alpha.device), torch.tensor([1.0]).to(alpha.device)
         )
         super().__init__(validate_args=validate_args)
-        super().__init__(validate_args=validate_args)
 
     @property
     def batch_shape(self) -> torch.Size:
-        """
+        r"""
         Returns the batch shape of the distribution.
 
         The batch shape represents the shape of independent distributions.
-        For example, if `loc` is vector of length 3,
-        the batch shape will be `[3]`, indicating 3 independent Bernoulli distributions.
+        For example, if `alpha` is a vector of length 3,
+        the batch shape will be `[3]`, indicating 3 independent distributions.
+
+        Returns:
+            torch.Size: The batch shape of the distribution.
         """
         return self.alpha.shape
 
     @property
     def event_shape(self) -> torch.Size:
-        """
+        r"""
         Returns the event shape of the distribution.
 
         The event shape represents the shape of each individual event.
+
+        Returns:
+            torch.Size: The event shape of the distribution.
         """
         return torch.Size()
 
     def rsample(self, sample_shape: torch.Size = torch.Size()) -> torch.Tensor:
-        """
+        r"""
         Generates a sample from the distribution using the reparameterization trick.
 
         Args:
-        - sample_shape (torch.Size): The shape of the sample.
+            sample_shape (torch.Size, optional): The shape of the sample. Defaults to torch.Size().
 
         Returns:
-        - torch.Tensor: A sample from the distribution.
+            torch.Tensor: A sample from the distribution.
         """
         u = self.uniform.sample(sample_shape).to(self.alpha.device)
         value = (torch.log(u) - torch.log(1 - u) + torch.log(self.alpha)) / self.beta
@@ -83,26 +96,27 @@ class HardConcrete(TorchDistribution):
         return z
 
     def sample(self, sample_shape: torch.Size = torch.Size()) -> torch.Tensor:
-        """
+        r"""
         Generates a sample from the distribution.
 
         Args:
-        - sample_shape (torch.Size): The shape of the sample.
+            sample_shape (torch.Size, optional): The shape of the sample. Defaults to torch.Size().
 
         Returns:
-        - torch.Tensor: A sample from the distribution.
+            torch.Tensor: A sample from the distribution.
         """
         with torch.no_grad():
             return self.rsample(sample_shape)
 
     def _q_prob(self, value: torch.Tensor) -> torch.Tensor:
-        """prob of q function
+        r"""
+        Computes the probability of the q function.
 
         Args:
-            value (torch.Tensor): _description_
+            value (torch.Tensor): The value for which to compute the probability.
 
         Returns:
-            torch.Tensor: _description_
+            torch.Tensor: The probability of the q function.
         """
         return (
             self.beta
@@ -113,13 +127,14 @@ class HardConcrete(TorchDistribution):
         )
 
     def _Q_prob(self, value: torch.Tensor) -> torch.Tensor:
-        """prob of Q function
+        r"""
+        Computes the probability of the Q function.
 
         Args:
-            value (torch.Tensor): _description_
+            value (torch.Tensor): The value for which to compute the probability.
 
         Returns:
-            torch.Tensor: _description_
+            torch.Tensor: The probability of the Q function.
         """
         return torch.nn.functional.sigmoid(
             self.beta * (torch.log(value) - torch.log(1 - value))
@@ -127,13 +142,14 @@ class HardConcrete(TorchDistribution):
         )
 
     def _q_bar_prob(self, value: torch.Tensor) -> torch.Tensor:
-        """prob of q function
+        r"""
+        Computes the probability of the q_bar function.
 
         Args:
-            value (torch.Tensor): _description_
+            value (torch.Tensor): The value for which to compute the probability.
 
         Returns:
-            torch.Tensor: _description_
+            torch.Tensor: The probability of the q_bar function.
         """
         return (
             1
@@ -142,25 +158,26 @@ class HardConcrete(TorchDistribution):
         )
 
     def _Q_bar_prob(self, value: torch.Tensor) -> torch.Tensor:
-        """prob of Q function
+        r"""
+        Computes the probability of the Q_bar function.
 
         Args:
-            value (torch.Tensor): _description_
+            value (torch.Tensor): The value for which to compute the probability.
 
         Returns:
-            torch.Tensor: _description_
+            torch.Tensor: The probability of the Q_bar function.
         """
         return self._Q_prob((value - self.gamma) / (self.xi - self.gamma))
 
     def log_prob(self, value: torch.Tensor) -> torch.Tensor:
-        """
+        r"""
         Computes the log probability of the given value.
 
         Args:
-        - value (Tensor): The value for which to compute the log probability.
+            value (torch.Tensor): The value for which to compute the log probability.
 
         Returns:
-        - torch.Tensor: The log probability of the given value.
+            torch.Tensor: The log probability of the given value.
         """
         if self._validate_args:
             self._validate_sample(value)
@@ -175,11 +192,11 @@ class HardConcrete(TorchDistribution):
         return log_prob
 
     def _validate_sample(self, value: torch.Tensor):
-        """
+        r"""
         Validates the given sample value.
 
         Args:
-        - value (Tensor): The sample value to validate.
+            value (torch.Tensor): The sample value to validate.
         """
         if self._validate_args:
             if not (value >= 0).all() or not (value <= 1).all():

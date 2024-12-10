@@ -1,14 +1,15 @@
 from torch.distributions import kl_divergence, register_kl, Normal
-
 from .InvertibleGaussian import InvertibleGaussian
 
 
 @register_kl(InvertibleGaussian, InvertibleGaussian)
-def _kl_igr_igr(p: InvertibleGaussian, q: InvertibleGaussian):
+def _kl_igr_igr(p: InvertibleGaussian, q: InvertibleGaussian) -> torch.Tensor:
     r"""
-    Compute Kullback-Leibler divergence :math:`KL(p \| q)` between two distributions.
-    
+    Compute Kullback-Leibler divergence :math:`KL(p \| q)` between two InvertibleGaussian distributions.
+
     Based on the paper https://arxiv.org/abs/1912.09588.
+
+    The Kullback-Leibler divergence is defined as:
 
     .. math::
 
@@ -19,7 +20,7 @@ def _kl_igr_igr(p: InvertibleGaussian, q: InvertibleGaussian):
         q (InvertibleGaussian): A :class:`~relaxit.distributions.InvertibleGaussian` object.
 
     Returns:
-        Tensor: A batch of KL divergences of shape `batch_shape`.
+        torch.Tensor: A batch of KL divergences of shape `batch_shape`.
     """
     p_normal = Normal(p.loc, p.scale)
     q_normal = Normal(q.loc, q.scale)

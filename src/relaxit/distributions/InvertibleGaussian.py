@@ -5,12 +5,14 @@ from torch.distributions.utils import _standard_normal
 
 
 class InvertibleGaussian(TorchDistribution):
-    """
-    Invertible Gaussian distribution, as it was presented in https://arxiv.org/abs/1912.09588.
+    r"""
+    Invertible Gaussian distribution class from https://arxiv.org/abs/1912.09588.
 
-    Parameters:
-    - loc (Tensor): The mean (mu) of the normal distribution.
-    - scale (Tensor): The standard deviation (sigma) of the normal distribution.
+    Args:
+        loc (torch.Tensor): The mean (mu) of the normal distribution.
+        scale (torch.Tensor): The standard deviation (sigma) of the normal distribution.
+        temperature (float): Temperature parameter for the softmax++ function.
+        validate_args (bool, optional): Whether to validate arguments. Defaults to None.
     """
 
     arg_constraints = {"loc": constraints.real, "scale": constraints.positive}
@@ -18,13 +20,14 @@ class InvertibleGaussian(TorchDistribution):
     has_rsample = True
 
     def __init__(self, loc, scale, temperature, validate_args: bool = None):
-        """
+        r"""
         Initializes the Invertible Gaussian distribution.
 
         Args:
-        - loc (Tensor): Mean of the normal distribution.
-        - scale (Tensor): Standard deviation of the normal distribution.
-        - validate_args (bool): Whether to validate arguments.
+            loc (torch.Tensor): Mean of the normal distribution.
+            scale (torch.Tensor): Standard deviation of the normal distribution.
+            temperature (float): Temperature parameter for the softmax++ function.
+            validate_args (bool, optional): Whether to validate arguments. Defaults to None.
 
         The batch shape is inferred from the shape of the parameters (loc and scale),
         meaning it defines how many independent distributions are parameterized.
@@ -36,31 +39,36 @@ class InvertibleGaussian(TorchDistribution):
         super().__init__(batch_shape, validate_args=validate_args)
 
     @property
-    def batch_shape(self):
-        """
+    def batch_shape(self) -> torch.Size:
+        r"""
         Returns the batch shape of the distribution.
 
         The batch shape represents the shape of independent distributions.
+
+        Returns:
+            torch.Size: The batch shape of the distribution.
         """
         return self.loc.shape
 
     @property
-    def event_shape(self):
-        """
+    def event_shape(self) -> torch.Size:
+        r"""
         Returns the event shape of the distribution.
 
         The event shape represents the shape of each individual event.
+
+        Returns:
+            torch.Size: The event shape of the distribution.
         """
         return torch.Size()
 
-    def softmax_plus_plus(self, y, delta=1):
-        """
-        Compute the softmax++ function.
+    def softmax_plus_plus(self, y: torch.Tensor, delta: float = 1) -> torch.Tensor:
+        r"""
+        Computes the softmax++ function.
 
         Args:
             y (torch.Tensor): Input tensor of shape (batch_size, num_classes).
-            tau (float): Temperature parameter.
-            delta (float): Additional term delta > 0.
+            delta (float, optional): Additional term delta > 0. Defaults to 1.
 
         Returns:
             torch.Tensor: Output tensor of the same shape as y.
@@ -79,12 +87,15 @@ class InvertibleGaussian(TorchDistribution):
 
         return softmax_pp
 
-    def rsample(self, sample_shape=torch.Size()):
-        """
+    def rsample(self, sample_shape: torch.Size = torch.Size()) -> torch.Tensor:
+        r"""
         Generates a sample from the distribution using the reparameterization trick.
 
         Args:
-        - sample_shape (torch.Size): The shape of the generated samples.
+            sample_shape (torch.Size, optional): The shape of the generated samples. Defaults to torch.Size().
+
+        Returns:
+            torch.Tensor: A sample from the distribution.
         """
         shape = self._extended_shape(sample_shape)
         eps = _standard_normal(shape, dtype=self.loc.dtype, device=self.loc.device)
@@ -93,12 +104,15 @@ class InvertibleGaussian(TorchDistribution):
         residual = 1 - torch.sum(g, dim=-1, keepdim=True)
         return torch.cat([g, residual], dim=-1)
 
-    def log_prob(self, value):
-        """
+    def log_prob(self, value: torch.Tensor) -> torch.Tensor:
+        r"""
         Computes the log likelihood of a value.
 
         Args:
-        - value (Tensor): The value for which to compute the log probability.
+            value (torch.Tensor): The value for which to compute the log probability.
+
+        Returns:
+            torch.Tensor: The log probability of the given value.
         """
         if self._validate_args:
             self._validate_sample(value)
@@ -131,11 +145,11 @@ class InvertibleGaussian(TorchDistribution):
         return log_prob
 
     def _validate_sample(self, value: torch.Tensor):
-        """
+        r"""
         Validates the given sample value.
 
         Args:
-        - value (Tensor): The sample value to validate.
+            value (torch.Tensor): The sample value to validate.
         """
         if self._validate_args:
             if not (value >= 0).all() or not (value <= 1).all():
