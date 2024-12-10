@@ -1,3 +1,4 @@
+import torch
 from pyro.distributions import constraints, Normal
 from pyro.distributions.torch import TransformedDistribution
 from pyro.distributions.transforms import SoftmaxTransform
