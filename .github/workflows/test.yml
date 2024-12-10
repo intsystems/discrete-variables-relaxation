@@ -4,9 +4,8 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
-    runs-on: ubuntu-latest        
+    runs-on: ubuntu-latest
     steps:
-
       - name: Checkout 🛎️
         uses: actions/checkout@v4
 
@@ -14,7 +13,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-        
+
       - name: Install Dependencies
         run: |
           pip install torch
@@ -25,15 +24,39 @@ jobs:
       - name: Testing
         run: |
           PYTHONPATH=src/ pytest tests/ --cov=relaxit --cov-report=xml
-          
+
       - name: Generate coverage badge
         run: |
           python badge_generator.py
 
-      # - name: Commit coverage badge
-      #   run: |
-      #     git config --global user.name 'github-actions[bot]'
-      #     git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-      #     git add coverage-badge.svg
-      #     git commit -m "Update coverage badge"
-      #     git push
+      - name: Check for changes in coverage badge
+        id: check_changes
+        run: |
+          if git diff --exit-code -- coverage-badge.svg; then
+            echo "No changes in coverage badge"
+            echo "::set-output name=changes::false"
+          else
+            echo "Changes detected in coverage badge"
+            echo "::set-output name=changes::true"
+          fi
+
+      - name: Commit coverage badge
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git checkout -b coverage-badge
+          git add coverage-badge.svg
+          git commit -m "Update coverage badge"
+          git push origin coverage-badge
+
+      - name: Create Pull Request
+        if: steps.check_changes.outputs.changes == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update coverage badge"
+          branch: coverage-badge
+          base: main
+          title: "Update coverage badge"
+          body: "This pull request updates the coverage badge based on the latest test results."
