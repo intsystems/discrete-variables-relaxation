@@ -76,7 +76,8 @@
            <div itemprop="articleBody">
              
   <h1>Source code for relaxit.distributions.LogisticNormalSoftmax</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pyro.distributions</span> <span class="kn">import</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">Normal</span>
+<span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">pyro.distributions</span> <span class="kn">import</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">Normal</span>
 <span class="kn">from</span> <span class="nn">pyro.distributions.torch</span> <span class="kn">import</span> <span class="n">TransformedDistribution</span>
 <span class="kn">from</span> <span class="nn">pyro.distributions.transforms</span> <span class="kn">import</span> <span class="n">SoftmaxTransform</span>
 
