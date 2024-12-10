@@ -76,20 +76,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for relaxit.distributions.GaussianRelaxedBernoulli</h1><div class="highlight"><pre>
-<span></span><span class="ch">#!/usr/bin/env python3</span>
-<span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">The :mod:`relaxit.distributions.GaussianRelaxedBernoulli` contains classes:</span>
-
-<span class="sd">- :class:`relaxit.distributions.GaussianRelaxedBernoulli.GaussianRelaxedBernoulli`</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
-
-<span class="n">__docformat__</span> <span class="o">=</span> <span class="s2">&quot;restructuredtext&quot;</span>
-
-
-<span class="kn">import</span> <span class="nn">torch</span>
+<span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">pyro.distributions.torch_distribution</span> <span class="kn">import</span> <span class="n">TorchDistribution</span>
 <span class="kn">from</span> <span class="nn">torch.distributions</span> <span class="kn">import</span> <span class="n">constraints</span>
 
@@ -98,12 +85,11 @@
 <a class="viewcode-back" href="../../../relaxit.distributions.html#relaxit.distributions.GaussianRelaxedBernoulli.GaussianRelaxedBernoulli">[docs]</a>
 <span class="k">class</span> <span class="nc">GaussianRelaxedBernoulli</span><span class="p">(</span><span class="n">TorchDistribution</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Gaussian-based continuous Relaxed Bernoulli distribution class inheriting from Pyro&#39;s TorchDistribution.</span>
+<span class="sd">    Gaussian-based continuous Relaxed Bernoulli distribution class from https://arxiv.org/abs/1810.04247.</span>
 
-<span class="sd">    :param loc: Mean of the normal distribution.</span>
-<span class="sd">    :type loc: torch.Tensor</span>
-<span class="sd">    :param scale: Standard deviation of the normal distribution.</span>
-<span class="sd">    :type scale: torch.Tensor</span>
+<span class="sd">    Args:</span>
+<span class="sd">        loc (torch.Tensor): Mean of the normal distribution.</span>
+<span class="sd">        scale (torch.Tensor): Standard deviation of the normal distribution.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">arg_constraints</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;loc&quot;</span><span class="p">:</span> <span class="n">constraints</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="s2">&quot;scale&quot;</span><span class="p">:</span> <span class="n">constraints</span><span class="o">.</span><span class="n">positive</span><span class="p">}</span>
@@ -113,14 +99,13 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">loc</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">scale</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">validate_args</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Initializes the GaussianRelaxedBernoulli distribution.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the GaussianRelaxedBernoulli distribution.</span>
 
-<span class="sd">        :param loc: Mean of the normal distribution.</span>
-<span class="sd">        :type loc: torch.Tensor</span>
-<span class="sd">        :param scale: Standard deviation of the normal distribution.</span>
-<span class="sd">        :type scale: torch.Tensor</span>
-<span class="sd">        :param validate_args: Whether to validate arguments.</span>
-<span class="sd">        :type validate_args: bool</span>
+<span class="sd">        Args:</span>
+<span class="sd">            loc (torch.Tensor): Mean of the normal distribution.</span>
+<span class="sd">            scale (torch.Tensor): Standard deviation of the normal distribution.</span>
+<span class="sd">            validate_args (bool, optional): Whether to validate arguments. Defaults to None.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">loc</span> <span class="o">=</span> <span class="n">loc</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>  <span class="c1"># Ensure loc is a float tensor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">scale</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>  <span class="c1"># Ensure scale is a float tensor</span>
@@ -133,8 +118,11 @@
 <span class="sd">        Returns the batch shape of the distribution.</span>
 
 <span class="sd">        The batch shape represents the shape of independent distributions.</span>
-<span class="sd">        For example, if `loc` is vector of length 3,</span>
+<span class="sd">        For example, if `loc` is a vector of length 3,</span>
 <span class="sd">        the batch shape will be `[3]`, indicating 3 independent Bernoulli distributions.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            torch.Size: The batch shape of the distribution.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loc</span><span class="o">.</span><span class="n">shape</span>
 
@@ -144,6 +132,9 @@
 <span class="sd">        Returns the event shape of the distribution.</span>
 
 <span class="sd">        The event shape represents the shape of each individual event.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            torch.Size: The event shape of the distribution.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">()</span>
 
@@ -153,10 +144,11 @@
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generates a sample from the distribution using the reparameterization trick.</span>
 
-<span class="sd">        :param sample_shape: The shape of the sample.</span>
-<span class="sd">        :type sample_shape: torch.Size</span>
-<span class="sd">        :return: A sample from the distribution.</span>
-<span class="sd">        :rtype: torch.Tensor</span>
+<span class="sd">        Args:</span>
+<span class="sd">            sample_shape (torch.Size, optional): The shape of the sample. Defaults to torch.Size().</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            torch.Tensor: A sample from the distribution.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">eps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normal</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">sample_shape</span><span class="p">)</span>
         <span class="n">z</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loc</span> <span class="o">+</span> <span class="n">eps</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -169,10 +161,11 @@
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generates a sample from the distribution.</span>
 
-<span class="sd">        :param sample_shape: The shape of the sample.</span>
-<span class="sd">        :type sample_shape: torch.Size</span>
-<span class="sd">        :return: A sample from the distribution.</span>
-<span class="sd">        :rtype: torch.Tensor</span>
+<span class="sd">        Args:</span>
+<span class="sd">            sample_shape (torch.Size, optional): The shape of the sample. Defaults to torch.Size().</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            torch.Tensor: A sample from the distribution.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rsample</span><span class="p">(</span><span class="n">sample_shape</span><span class="p">)</span></div>
@@ -184,10 +177,11 @@
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the log probability of the given value.</span>
 
-<span class="sd">        :param value: The value for which to compute the log probability.</span>
-<span class="sd">        :type value: torch.Tensor</span>
-<span class="sd">        :return: The log probability of the given value.</span>
-<span class="sd">        :rtype: torch.Tensor</span>
+<span class="sd">        Args:</span>
+<span class="sd">            value (torch.Tensor): The value for which to compute the log probability.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            torch.Tensor: The log probability of the given value.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_args</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_validate_sample</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
@@ -214,8 +208,8 @@
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Validates the given sample value.</span>
 
-<span class="sd">        :param value: The sample value to validate.</span>
-<span class="sd">        :type value: torch.Tensor</span>
+<span class="sd">        Args:</span>
+<span class="sd">            value (torch.Tensor): The sample value to validate.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_args</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">value</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="p">(</span><span class="n">value</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
