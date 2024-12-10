@@ -48,7 +48,7 @@ jobs:
           git checkout -b coverage-badge
           git add coverage-badge.svg
           git commit -m "Update coverage badge"
-          git push origin coverage-badge
+          git push --force origin coverage-badge
 
       - name: Create Pull Request
         if: steps.check_changes.outputs.changes == 'true'
