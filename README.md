@@ -1,5 +1,9 @@
 <div align="center">  
-    <img src="assets/logo.svg" width="200px" />
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/logo-white.svg" width="200px">
+      <source media="(prefers-color-scheme: light)" srcset="assets/logo.svg" width="200px">
+      <img alt="Just Relax It" src="assets/logo.svg" width="200px">
+    </picture>
     <h1> Just Relax It </h1>
     <p align="center"> Discrete Variables Relaxation </p>
 </div>
